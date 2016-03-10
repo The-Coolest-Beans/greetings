@@ -1,0 +1,36 @@
+<!doctype html>
+<html data-ng-app="app" data-ng-controller="appCtrl">
+  <head>
+    <meta charset="utf-8">
+    <title>{{pageTitle}}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="styles/header.css">
+  </head>
+  <body>
+
+    <div data-ui-view></div>
+
+    <!-- Vendor Files -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-ui-router/angular-ui-router.min.js"></script>
+
+    <!-- main app -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/app.main.js"></script>
+    <script src="scripts/config.route.js"></script>
+
+    <!-- services -->
+    <script src="scripts/services/authInterceptorService.js"></script>
+
+    <!-- controllers -->
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/cards.js"></script>
+
+  </body>
+</html>

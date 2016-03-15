@@ -46,14 +46,8 @@ var checkToken = function(req, res, next) {
   }
 };
 
-var dogs = require('./routes/dogs');
-app.use('/api/dogs', dogs);
-
-var cats = require('./routes/cats');
-app.use('/api/cats', cats);
-
-var cats = require('./routes/themes');
-app.use('/api/themes', cats);
+var themes = require('./routes/themes');
+app.use('/api/themes', themes);
 
 var auth = require('./routes/auth');
 app.use('/auth', auth);

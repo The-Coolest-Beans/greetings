@@ -4,7 +4,7 @@ angular
   .module('app')
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider) {
-      console.log("Starting app.config.route...");
+
       // For unmatched routes
       $urlRouterProvider.otherwise('/home');
 
@@ -22,7 +22,6 @@ angular
         .state('app.home', {
           url: '/home',
           templateUrl: 'views/home.html',
-          controller: 'mainCtrl',
         })
         .state('app.cards', {
           url: '/cards',

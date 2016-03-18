@@ -5,9 +5,7 @@ var router = express.Router();//
 //var authCheck = require('./authCheck');
 //router.use(authCheck);
 
-router
-
-.get('/', function(req, res, next)){
+router.get('/', function(req, res, next){
   res.send([
     {id:0 , theme: 'Birthday'},
     {id:1 , theme: 'Valentine\'s Day'},
@@ -15,9 +13,9 @@ router
 
   ]);
 
-}//closing get
+})
 
-.get('/:theme', function(req, res, next)){
+.get('/:theme', function(req, res, next){
 
   var cards = [
     {id:0 , theme: 'Birthday'},
@@ -28,16 +26,15 @@ router
   for( var i in cards){
 
     if(cards[i].theme === theme){
-      res.send([cards[i];])
+      res.send([
+        cards[i]
+      ]);
 
     }//closing if
 
   }//closing for
 
-
-
-
-}//closing get
+});//closing get
 
 
 module.exports = router;

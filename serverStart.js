@@ -46,12 +46,18 @@ var checkToken = function(req, res, next) {
   }
 };
 
-var themes = require('./routes/themes');
-app.use('/api/themes', themes);
+//when some calls that url , give them this file
+var themes = require('./routes/themes');//folder of file
+app.use('/api/themes', themes);//url called
 
 var auth = require('./routes/auth');
 app.use('/auth', auth);
 
+var cards = require('./routes/cards');
+app.use('/api/cards', cards);
+
+var connection_test = require('./routes/connection_test');
+app.use('/api/contest', connection_test);
 //Serve all files from the public directory.
 app.use(express.static(process.cwd() + '/public'));
 

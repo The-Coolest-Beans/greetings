@@ -7,6 +7,10 @@ var users = require('../database/models/users.js'); // get users table from data
 //router.use(authCheck);
 
 router.get('/', function(req, res, next) {
+  
+  // Finds and retrieves all rows of the user table (excluding the (hashed) passwords column).
+  // After getting the data, the data will be sent to the API (That's what the 'then' is doing.)
+  // Sequelize documentation: http://docs.sequelizejs.com/en/latest/
 	users.findAll({
   		attributes: { exclude: ['password'] }
 	}).then(function (userList) {

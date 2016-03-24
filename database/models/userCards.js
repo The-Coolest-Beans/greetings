@@ -1,6 +1,10 @@
 var Sequelize = require('sequelize');
 var db = require('../db.js');
 
+/* 
+Tells sequelize how our database is set up so it
+knows which columns to convert into which JSON fields.
+*/
 var UserCards = db.define('userCards', {
   id: {
     type: Sequelize.INTEGER,

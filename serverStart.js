@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 // var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var db = require('./database/db.js'); // connect server to database
 
 var app = express();
 var serverPort = 3000;
@@ -48,6 +49,9 @@ var checkToken = function(req, res, next) {
 
 var themes = require('./routes/themes');
 app.use('/api/themes', themes);
+
+var users = require('./routes/users');
+app.use('/api/users', users);
 
 var auth = require('./routes/auth');
 app.use('/auth', auth);

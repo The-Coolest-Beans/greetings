@@ -60,6 +60,9 @@ app.use('/auth', auth);
 var cards = require('./routes/cards');
 app.use('/api/cards', cards);
 
+var secureAccessTest = require('./routes/secureAccessTest');
+app.use('/api/secureAccessTest', secureAccessTest);
+
 var connection_test = require('./routes/connection_test');
 app.use('/api/contest', connection_test);
 //Serve all files from the public directory.

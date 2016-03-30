@@ -48,8 +48,8 @@ var checkToken = function(req, res, next) {
 };
 
 //when some calls that url , give them this file
-var themes = require('./routes/themes');//folder of file
-app.use('/api/themes', themes);//url called
+var templates = require('./routes/templates');//folder of file
+app.use('/api/templates', templates);//url called
 
 var users = require('./routes/users');
 app.use('/api/users', users);

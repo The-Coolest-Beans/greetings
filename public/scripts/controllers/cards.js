@@ -8,22 +8,22 @@ angular
       // set the page title
       $rootScope.$broadcast('setPageTitle', 'Cards');
 
-      // clear out the themes array
-      $scope.themes = [];
+      // clear out the templates array
+      $scope.templates = [];
 
-      // call the themes api
-      $http.get('/api/themes').then(function(result){
+      // call the templates api
+      $http.get('/api/templates').then(function(result){
 
         // save the results of the call
-        $scope.themes = result.data;
+        $scope.templates = result.data;
 
       }, function(e) {
 
         // error occurred - print it
-        console.log('Get call to themes errored.', e);
+        console.log('Get call to templates errored.', e);
 
       }); // end api call block
 
-    } // end fucntion
+    } // end function
 
   ]); // end controller

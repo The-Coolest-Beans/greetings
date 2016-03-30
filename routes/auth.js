@@ -10,16 +10,22 @@ router
     //look up user here with username and password. if found, you'll have an user object.
 
     //This is normally used when saving a password to the database.
-    var hash = bcrypt.hashSync('pwd1234');
+    var hash = bcrypt.hashSync('greetings12');
 
     //Get user object from database with req.body.username (or whatever)
-    user = {
-      name: 'Greg',
-      password: hash,
-      adminTF: true
-    };
+    if(req.body.name == 'mikaela@steeleconsult.com')
+    {
+      user = {
+        name: 'mikaela@steeleconsult.com',
+        password: hash,
+        adminTF: true
+      };
+    }
+    else {
+      user = undefined;
+    }
 
-    if (!user) {
+    if (!user || !user.name) {
       res.json({
         success: false,
         message: 'Authentication failed. User not found.'

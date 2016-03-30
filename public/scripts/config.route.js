@@ -16,7 +16,8 @@ angular
       $stateProvider
         .state('app', {
           abstract: true, //Means you can't pick this route directly, got to choose a child. GJS
-          templateUrl: 'views/common/mainLayout.html'
+          templateUrl: 'views/common/mainLayout.html',
+          controller: 'layoutCtrl',
         })
         //Views
         .state('app.home', {
@@ -27,6 +28,11 @@ angular
           url: '/cards',
           templateUrl: 'views/cards.html',
           controller: 'cardsCtrl',
+        })
+        .state('app.login', {
+          url: '/login',
+          templateUrl: 'views/login.html',
+          controller: 'sessionCtrl',
         })
     }
   ]);

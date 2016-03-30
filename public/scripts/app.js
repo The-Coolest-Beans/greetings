@@ -11,6 +11,7 @@
 angular
   .module('app', [
     'ui.router',
+    'LocalStorageModule',
   ])
   .config(['$httpProvider', function ($httpProvider) {
 

@@ -6,9 +6,9 @@ Tells sequelize how our database is set up so it
 knows which columns to convert into which JSON fields.
 */
 var SentCards = db.define('sentCards', {
-  sentId: {
+  userId: {
     type: Sequelize.INTEGER,
-    field: 'sentId',
+    field: 'userId',
     primaryKey: true
   },
   cardId: {

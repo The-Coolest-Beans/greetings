@@ -10,7 +10,7 @@ knows which columns to convert into which JSON fields.
 var Users = db.define('users', {
   id: {
     type: Sequelize.INTEGER,
-    field: 'userId', // Will result in an attribute that is id when user facing but userId in the database
+    field: 'id', // Will result in an attribute that is id when user facing but userId in the database
   	primaryKey: true
   },
   name: {

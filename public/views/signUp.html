@@ -1,0 +1,62 @@
+<form class="form-horizontal">
+
+    <div>
+      <legend>Register</legend>
+    </div>
+
+    <div class="signUpField">
+      <!-- Name -->
+      <label>Name</label>
+      <div>
+        <input type="text" id="name" data-ng-model="newUserInfo.name" placeholder="eg. John Smith" size="70" required autofocus>
+      </div>
+    </div>
+
+    <div class="signUpField">
+      <!-- Email -->
+      <label>Email Address</label>
+      <div>
+        <input type="email" id="email" data-ng-model="newUserInfo.email" placeholder="eg. jsmith@example.com" size="70" required>
+      </div>
+    </div>
+
+    <div class="signUpField">
+      <!-- Confirm Email -->
+      <label>Confirm Email Address</label>
+      <div>
+        <input type="email" id="confirmEmail" data-ng-model="newUserInfo.confirmEmail" placeholder="eg. jsmith@example.com" size="70" required>
+      </div>
+    </div>
+
+    <div class="signUpField">
+      <!-- Username -->
+      <label>Username</label>
+      <div>
+        <input type="text" id="username" data-ng-model="newUserInfo.username" placeholder="eg. jsmith" size="70" required>
+      </div>
+    </div>
+
+    <div class="signUpField">
+      <!-- Password -->
+      <label>Password</label>
+      <div>
+        <input type="password" id="password" data-ng-model="newUserInfo.password" size="70" required>
+      </div>
+    </div>
+
+    <div class="signUpField">
+      <!-- Confirm Password -->
+      <label>Confirm Password</label>
+      <div>
+        <input type="password" id="confirmPassword" data-ng-model="newUserInfo.confirmPassword" size="70" required>
+      </div>
+    </div>
+
+    <div class="signUpField">
+      <!-- Register Button -->
+      <div>
+        <button class="btn btn-success" data-ng-click="signUpButtonClicked();">Register</button>
+      </div>
+    </div>
+
+</form>

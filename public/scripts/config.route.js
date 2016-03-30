@@ -34,5 +34,10 @@ angular
           templateUrl: 'views/login.html',
           controller: 'sessionCtrl',
         })
+        .state('app.signUp', {
+          url: '/signup',
+          templateUrl: 'views/signUp.html',
+          controller: 'signUpCtrl',
+        })
     }
   ]);

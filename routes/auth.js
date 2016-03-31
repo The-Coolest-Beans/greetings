@@ -10,8 +10,8 @@ router
     console.log('req.body', req.body);
     //look up user here with username and password. if found, you'll have an user object.
 
-    //This is normally used when saving a password to the database.
-    var hash = bcrypt.hashSync('greetings12');
+    //This is also used when saving a password to the database.
+    var hash = bcrypt.hashSync(req.body.password);
     console.log('hashed password: ', hash);
 
     //Get user object from database that matches the passed email
@@ -30,9 +30,11 @@ router
           message: 'Authentication failed. User not found.'
         });
       } else if (user) {
+        console.log('Passed Password: ', req.body.password);
+        console.log('Passed Password Hashed: ', hash);
+        console.log('Saved Password: ', user.password);
         // check if password matches - this is where we hash the password
-        //if (!bcrypt.compareSync(req.body.password, user.password)) { //TODO: replace the password compare with this when hashes are working.
-        if (req.body.password != user.password) {
+        if (!bcrypt.compareSync(req.body.password, user.password)) {
           console.log('User password doesn\'t match.');
           console.log('Passed Password: ', req.body.password);
           console.log('Saved Password: ', user.password);

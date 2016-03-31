@@ -39,5 +39,10 @@ angular
           templateUrl: 'views/signUp.html',
           controller: 'signUpCtrl',
         })
+        .state('app.cardCustomization', {
+          //url: '/customize',
+          templateUrl: 'views/cardCustomization.html',
+          //controller: 'signUpCtrl',
+        })
     }
   ]);

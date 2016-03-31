@@ -1,58 +1,59 @@
+<div class="col-md-6">
 <form class="form-horizontal">
 
     <div>
       <legend>Register</legend>
     </div>
 
-    <div class="signUpField">
+    <div class="signUpField col-md-12">
       <!-- Name -->
       <label>Name</label>
       <div>
-        <input type="text" id="name" data-ng-model="newUserInfo.name" placeholder="eg. John Smith" size="70" required autofocus>
+        <input class="col-md-12" type="text" id="name" data-ng-model="newUserInfo.name" placeholder="eg. John Smith" required autofocus>
       </div>
     </div>
 
-    <div class="signUpField">
+    <div class="signUpField col-md-12">
       <!-- Email -->
       <label>Email Address</label>
       <div>
-        <input type="email" id="email" data-ng-model="newUserInfo.email" placeholder="eg. jsmith@example.com" size="70" required>
+        <input class="col-md-12" type="email" id="email" data-ng-model="newUserInfo.email" placeholder="eg. jsmith@example.com" required>
       </div>
     </div>
 
-    <div class="signUpField">
+    <div class="signUpField col-md-12">
       <!-- Confirm Email -->
       <label>Confirm Email Address</label>
       <div>
-        <input type="email" id="confirmEmail" data-ng-model="newUserInfo.confirmEmail" placeholder="eg. jsmith@example.com" size="70" required>
+        <input class="col-md-12" type="email" id="confirmEmail" data-ng-model="newUserInfo.confirmEmail" placeholder="eg. jsmith@example.com" required>
       </div>
     </div>
 
-    <div class="signUpField">
+    <div class="signUpField col-md-12">
       <!-- Username -->
       <label>Username</label>
       <div>
-        <input type="text" id="username" data-ng-model="newUserInfo.username" placeholder="eg. jsmith" size="70" required>
+        <input class="col-md-12" type="text" id="username" data-ng-model="newUserInfo.username" placeholder="eg. jsmith" required>
       </div>
     </div>
 
-    <div class="signUpField">
+    <div class="signUpField col-md-12">
       <!-- Password -->
       <label>Password</label>
       <div>
-        <input type="password" id="password" data-ng-model="newUserInfo.password" size="70" required>
+        <input class="col-md-12" type="password" id="password" data-ng-model="newUserInfo.password" required>
       </div>
     </div>
 
-    <div class="signUpField">
+    <div class="signUpField col-md-12">
       <!-- Confirm Password -->
       <label>Confirm Password</label>
       <div>
-        <input type="password" id="confirmPassword" data-ng-model="newUserInfo.confirmPassword" size="70" required>
+        <input class="col-md-12" type="password" id="confirmPassword" data-ng-model="newUserInfo.confirmPassword" required>
       </div>
     </div>
 
-    <div class="signUpField">
+    <div class="signUpField col-md-12">
       <!-- Register Button -->
       <div>
         <button class="btn btn-success" data-ng-click="signUpButtonClicked();">Register</button>
@@ -60,3 +61,9 @@
     </div>
 
 </form>
+</div>
+
+<div class="jumbotron col-md-6 container">
+    <img src="images/SignUpCoolBean.png" class="col-md-offset-5"/>
+    <p style="text-align: center;">You're just a click away from having the power to send super duper extra awesome cool cards!</p>
+</div>

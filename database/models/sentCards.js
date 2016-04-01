@@ -7,12 +7,12 @@ knows which columns to convert into which JSON fields.
 */
 var SentCards = db.define('sentCards', {
   userId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     field: 'userId',
     primaryKey: true
   },
   cardId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     field: 'cardId'
   },
   toAddress: {

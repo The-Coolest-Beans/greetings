@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 // var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var db = require('./database/db.js'); // connect server to database
+var db = require('./database/db.js');
+var associations = require('./database/associations.js'); // connect server to database
 
 var app = express();
 var serverPort = 3000;

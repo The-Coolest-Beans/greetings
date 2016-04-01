@@ -7,13 +7,9 @@ knows which columns to convert into which JSON fields.
 */
 var UserCards = db.define('userCards', {
   id: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     field: 'id',
     primaryKey: true
-  },
-  guid: {
-    type: Sequelize.STRING,
-    field: 'cardGUID'
   },
   templateId: {
     type: Sequelize.INTEGER,

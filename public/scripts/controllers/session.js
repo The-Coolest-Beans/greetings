@@ -14,16 +14,8 @@ angular.module('app')
 
       //Login Submit
       $scope.login = function() {
-        // noty({
-        //   timeout: 5000,
-        //   type: 'information', //blue. Also alert, information, confirm, error, warning
-        //   layout: 'topCenter',
-        //   text: 'Not Set',
-        //   closeWith: ['button', 'click'],
-        // });
-
         console.log('login clicked.', $scope.credentials);
-
+        //Check to make sure all the fields are filled in
         if (!$scope.credentials || !$scope.credentials.userName || $scope.credentials.userName.length <= 0
           || !$scope.credentials.password || $scope.credentials.password.length <= 0)
         {
@@ -41,9 +33,9 @@ angular.module('app')
         authService.login($scope.credentials).then(function(user) {
           $scope.loading = false;
           $rootScope.$broadcast('auth-success');
-          //$scope.setCurrentUser(user);
           $state.go('app.home');
-        }, function() {
+        }, function(res) {
+          console.log('Session Login Error Response: ', res);
           $scope.loading = false;
           $rootScope.$broadcast('auth-fail');
 
@@ -51,7 +43,7 @@ angular.module('app')
             timeout: 3000,
             type: 'error', //blue. Also alert, information, confirm, error, warning
             layout: 'topCenter',
-            text: 'Invalid username or password. Please try again.',
+            text: res.message,
             closeWith: ['button', 'click'],
           });
         });

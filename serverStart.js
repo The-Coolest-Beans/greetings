@@ -70,6 +70,9 @@ app.use('/api/createCard', createCard);
 var myCards = require('./routes/myCards');
 app.use('/api/myCards', myCards);
 
+var deleteCard = require('./routes/deleteCard');
+app.use('/api/deleteCard', deleteCard);
+
 var secureAccessTest = require('./routes/secureAccessTest');
 app.use('/api/secureAccessTest', secureAccessTest);
 

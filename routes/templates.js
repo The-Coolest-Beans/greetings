@@ -7,12 +7,12 @@ var templates = require('../database/models/cardTemplates.js'); // get cardTempl
 //router.use(authCheck);
 
 router.get('/', function(req, res, next) {
-  
+
   // Finds and retrieves all rows of the templates table (excluding date columns).
   // After getting the data, the data will be sent to the API (That's what the 'then' is doing.)
   // Sequelize documentation: http://docs.sequelizejs.com/en/latest/
   templates.findAll({
-  		attributes: { exclude: ['createdAt', 'deletedAt', 'updatedAt'] }
+  		attributes: { exclude: ['deletedAt'] } //we will need created and update at, so i left these in
 	}).then(function (cardTemplates) {
 		res.send(cardTemplates);
 	});

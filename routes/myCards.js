@@ -5,13 +5,15 @@ var router = express.Router();//
 var authCheck = require('./authCheck');
 router.use(authCheck);
 
+
+
 var userCards = require('../database/models/userCards.js');//get user cards table from database
 
 router.get('/', function(req, res, next){
-
+  var decoded = req.decoded; //getting the user object
   userCards.findAll({
     where: {
-        ownerId:'sarah95',//all that match my ID
+        ownerId:decoded.id,//all that match my ID
         deletedAt:null, //all that haven't been deleted
     }
   }).then(function (cardData){
@@ -30,7 +32,7 @@ router.delete('/:id', function(req, res, next){
   }, {
     where: {
       id:cardId,//checking if the id requested
-      ownerId:'sarah95', //can't delete someone else's card!
+      ownerId:decoded.id, //can't delete someone else's card!
     }//closing where-in
   })//closing update
 });//closing delete

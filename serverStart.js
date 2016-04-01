@@ -60,6 +60,9 @@ app.use('/auth', auth);
 var cards = require('./routes/cards');
 app.use('/api/cards', cards);
 
+var createCard = require('./routes/createCard');
+app.use('/api/createCard', createCard);
+
 var myCards = require('./routes/myCards');
 app.use('/api/myCards', myCards);
 

@@ -3,8 +3,8 @@ var router = express.Router();//
 
 
 //Include this module if you want the route secured -- i.e. user must be logged in.
-//var authCheck = require('./authCheck');
-//router.use(authCheck);
+var authCheck = require('./authCheck');
+router.use(authCheck);
 
 //TODO: check the this connection works
 //establishing database connection

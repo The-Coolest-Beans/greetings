@@ -44,8 +44,9 @@ angular.module('app')
             if(!response || !response.success) {
               //The response came back, but the data is bad.
               console.log('Login failed.');
+              console.log('Response: ', response);
               _logOut();
-              deferred.reject('Login failed');
+              deferred.reject(response);
               return deferred.promise;
             }
             localStorageService.set('authorizationData', {

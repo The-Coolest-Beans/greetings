@@ -2,15 +2,9 @@
 
 angular
   .module('app')
-  .controller('layoutCtrl', ['$stateParams', '$scope', '$rootScope', '$http', 'authService', '$timeout',
+  .controller('homeCtrl', ['$stateParams', '$scope', '$rootScope', '$http', 'authService', '$timeout',
     function($stateParams, $scope, $rootScope, $http, authService, $timeout) {
       console.log('Starting layoutCtrl...');
-
-      $rootScope.testing = function () {
-
-        console.log("WootWoot!!!");
-
-      }
 
       //This is set to handle new logins and already loaded users.
       $scope.user = authService.getUser();

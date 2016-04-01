@@ -18,18 +18,30 @@
     1. Fill out what you've done
     2. To keep track of everything
 
-    Created greetingCards database.
-    Created users, userCards, cardTemplates, and sentCards tables.
-    Added sequelize ORM module to project.
 
-    Added database connection and data model code (found in database folder)
-        - Hooked up database to server (database/db.js)
-        - Defined users table so sequelize can map the table data to JSON objects (database/models/users.js)
-        - Defined cardTemplate table (database/models/cardTemplates.js)
-        - Defined userCards table (database/models/userCards.js)
-        - Defined sentCards table (database/models/sentCards.js)
+    (3/25/16)
+    - Created greetingCards database.
+    - Created users, userCards, cardTemplates, and sentCards tables.
+    - Added sequelize ORM module to project.
 
-    Updated users API to serve data from database instead of hard-coded data.
-    Updated themes API to serve data from database instead of hard-coded data.
+    - Added database connection and data model code (found in database folder)
+        -- Hooked up database to server (database/db.js)
+        -- Defined users table so sequelize can map the table data to JSON objects (database/models/users.js)
+        -- Defined cardTemplate table (database/models/cardTemplates.js)
+        -- Defined userCards table (database/models/userCards.js)
+        -- Defined sentCards table (database/models/sentCards.js)
+
+    - Updated users API to serve data from database instead of hard-coded data.
+    - Updated themes API to serve data from database instead of hard-coded data.
+    
+    (3/30/16)
+    - Renamed a few columns of some of the tables. (For example renamed the userId column 
+    in the users table to just id).
+    - Created themes and templateThemes relations so card templates can have multiple themes, and 
+    can be filtered by theme category.
+    - Renamed the former themes API to templates API since it's serving card template data, not theme data.
+    - Added placeolder images to support the dummy template data we have stored in the database.
+    - Updated card template pages to display thumbnails of all card templates, as well as their names and description.
+    
 
 */

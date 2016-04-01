@@ -23,6 +23,7 @@ angular
         .state('app.home', {
           url: '/home',
           templateUrl: 'views/home.html',
+          controller: 'homeCtrl',
         })
         .state('app.cards', {
           url: '/cards',
@@ -33,6 +34,16 @@ angular
           url: '/login',
           templateUrl: 'views/login.html',
           controller: 'sessionCtrl',
+        })
+        .state('app.signUp', {
+          url: '/signup',
+          templateUrl: 'views/signUp.html',
+          controller: 'signUpCtrl',
+        })
+        .state('app.cardCustomization', {
+          url: '/customize',
+          templateUrl: 'views/cardCustomization.html',
+          controller: 'cardCustomizationCtrl',
         })
     }
   ]);

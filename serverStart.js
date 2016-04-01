@@ -58,6 +58,9 @@ app.use('/api/users', users);
 var auth = require('./routes/auth');
 app.use('/auth', auth);
 
+var testSend = require('./routes/testSend');
+app.use('/testSend', testSend);
+
 var cards = require('./routes/cards');
 app.use('/api/cards', cards);
 
@@ -72,6 +75,7 @@ app.use('/api/secureAccessTest', secureAccessTest);
 
 var connection_test = require('./routes/connection_test');
 app.use('/api/contest', connection_test);
+
 //Serve all files from the public directory.
 app.use(express.static(process.cwd() + '/public'));
 

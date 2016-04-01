@@ -40,9 +40,9 @@ angular
           controller: 'signUpCtrl',
         })
         .state('app.cardCustomization', {
-          //url: '/customize',
+          url: '/customize',
           templateUrl: 'views/cardCustomization.html',
-          //controller: 'signUpCtrl',
+          controller: 'cardCustomizationCtrl',
         })
     }
   ]);

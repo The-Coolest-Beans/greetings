@@ -61,6 +61,9 @@ app.use('/auth', auth);
 var testSend = require('./routes/testSend');
 app.use('/testSend', testSend);
 
+var sendAuthEmail = require('./routes/sendAuthEmail');
+app.use('/sendAuthEmail', sendAuthEmail);
+
 var cards = require('./routes/cards');
 app.use('/api/cards', cards);
 

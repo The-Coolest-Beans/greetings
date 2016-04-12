@@ -5,7 +5,43 @@ angular
   .controller('cardCustomizationCtrl', ['$stateParams', '$scope', '$rootScope', '$http', 'authService', '$timeout', '$state',
     function AppCtrl($stateParams, $scope, $rootScope, $http, authService, $timeout, $state) {
 
-      console.log("You clicked on a card!");
+      //This is set to handle new logins and already loaded users.
+      $scope.user = authService.getUser();
+      $scope.$on('UserAuthenticated', function() {
+        $timeout(function() {
+          $scope.user = authService.getUser();
+          console.log('Heard UserAuthenticated in layoutCtrl', $scope.user);
+        });
+      });
+      $scope.$on('UserLogOut', function() {
+        $timeout(function() {
+          $scope.user = authService.getUser();
+          console.log('Heard UserLogOut in layoutCtrl', $scope.user);
+        });
+      });
+
+      $scope.logout = function() {
+        console.log('Logging out.');
+        authService.logOut();
+      };
+
+      // clear out the templates dictionary
+      $scope.cardInfo = {};
+      var requestPath = "/api/templates/" + $stateParams.cardID;
+
+      // call the templates api
+      $http.get(requestPath).then(function(result){
+
+        // save the results of the call
+        $scope.cardInfo = result.data[0];
+        $scope.customizeTextInput = $scope.cardInfo.defaultHeaderText;
+
+      }, function(e) {
+
+        // error occurred - print it
+        console.log('Get call to templates errored.', e);
+
+      }); // end api call block
 
     } // end function
 

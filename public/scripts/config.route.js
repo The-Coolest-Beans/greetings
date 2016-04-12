@@ -41,7 +41,7 @@ angular
           controller: 'signUpCtrl',
         })
         .state('app.cardCustomization', {
-          url: '/customize',
+          url: '/customize/:cardID',
           templateUrl: 'views/cardCustomization.html',
           controller: 'cardCustomizationCtrl',
         })

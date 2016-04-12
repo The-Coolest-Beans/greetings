@@ -6,42 +6,18 @@
 <div class="container">
   <h2>Popular Cards</h2>
   <div class="row" ng-show="!user.name">
-    <div class="col-md-4">
-      <a href="#" class="thumbnail" ui-sref="app.login">
-        <p>A card to bring healing</p>
-        <img src="http://harrisongreetingcards.net/images/CG14B_Get_Well_Soon_greeting_card.jpg" alt="Pulpit Rock" style="height:150px">
-      </a>
-    </div>
-    <div class="col-md-4">
-      <a href="#" class="thumbnail" ui-sref="app.login">
-        <p>A card to show your affection</p>
-        <img src="http://www.twizler.co.uk/ekmps/shops/twizler/images/on-our-anniversary-card-two-birds-1074-p[ekm]425x425[ekm].jpg" alt="Moustiers Sainte Marie" style="height:150px">
-      </a>
-    </div>
-    <div class="col-md-4">
-      <a href="#" class="thumbnail" ui-sref="app.login">
-        <p>A card of excitement</p>
-        <img src="http://vignette1.wikia.nocookie.net/creepypasta/images/8/8d/Birthday-greeting-cards-ecards-wishes-5.jpg" alt="Cinque Terre" style="height:150px">
+    <div class="col-md-4" ng-repeat="t in templates">
+      <a href="#" class="thumbnail" ui-sref="app.cardCustomization({cardID: t.id})">
+        <p>{{t.name}}</p>
+        <img src="{{t.imagePath}}" alt="{{t.name}}" style="height:250px">
       </a>
     </div>
   </div>
   <div class="row" ng-show="user.name">
-    <div class="col-md-4">
-      <a href="#" class="thumbnail" ui-sref="app.cardCustomization">
-        <p>A card to bring healing</p>
-        <img src="http://harrisongreetingcards.net/images/CG14B_Get_Well_Soon_greeting_card.jpg" alt="Pulpit Rock" style="height:150px">
-      </a>
-    </div>
-    <div class="col-md-4">
-      <a href="#" class="thumbnail" ui-sref="app.cardCustomization">
-        <p>A card to show your affection</p>
-        <img src="http://www.twizler.co.uk/ekmps/shops/twizler/images/on-our-anniversary-card-two-birds-1074-p[ekm]425x425[ekm].jpg" alt="Moustiers Sainte Marie" style="height:150px">
-      </a>
-    </div>
-    <div class="col-md-4">
-      <a href="#" class="thumbnail" ui-sref="app.cardCustomization">
-        <p>A card of excitement</p>
-        <img src="http://vignette1.wikia.nocookie.net/creepypasta/images/8/8d/Birthday-greeting-cards-ecards-wishes-5.jpg" alt="Cinque Terre" style="height:150px">
+    <div class="col-md-4" ng-repeat="t in templates">
+      <a href="#" class="thumbnail" ui-sref="app.cardCustomization({cardID: t.id})">
+        <p>{{t.name}}</p>
+        <img src="{{t.imagePath}}" alt="{{t.name}}" style="height:250px">
       </a>
     </div>
   </div>

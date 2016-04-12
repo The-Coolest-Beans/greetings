@@ -1,14 +1,18 @@
-<div class="row">
+<div class="row" ng-controller="cardCustomizationCtrl">
+  <div class="col-md-12">
+    <h3>"{{cardInfo.name}}" Card<h3>
+  </div>
   <div class="col-md-8">
-    <a class="thumbnail">
-      <img src="http://harrisongreetingcards.net/images/CG14B_Get_Well_Soon_greeting_card.jpg">
+    <a class="stackedElement thumbnail">
+      <img src="{{cardInfo.imagePath}}">
     </a>
+    <h1 class="col-md-offset-4 stackedElement" ng-bind="customizeTextInput" />
   </div>
   <div class="col-md-4">
     <legend>Tools</legend>
     <div class="row customizeCardField">
       <label class="col-md-2">Text:</label>
-      <input class="col-md-10" type="text" required autofocus>
+      <input class="col-md-10" type="text" ng-model="customizeTextInput" required autofocus>
     </div>
     <div class="row customizeCardField">
       <label class="col-md-4">Text Color:</label>

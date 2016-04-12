@@ -1,17 +1,11 @@
 <div class="container" ng-app="app">
   	<h2>Card Templates</h2>
   	<div class="row">
- 		<div class="col-sm-6 col-md-4" ng-repeat="t in templates">
-    		<div class="thumbnail">
-	      		<img src="{{t.imagePath}}" alt="{{t.name}}">
-	      		<div class="caption">
-		        	<h3>{{t.name}}</h3>
-		        	<p>{{t.description}}</p>
-		        	<p><a href="#" class="btn btn-primary" role="button">Personalize</a></p>
-	      		</div>
-    		</div>
-  		</div>
+    <div class="col-md-4" ng-repeat="t in templates">
+      <a href="#" class="thumbnail" ui-sref="app.cardCustomization({cardID: t.id})">
+        <p>{{t.name}}</p>
+        <img src="{{t.imagePath}}" alt="{{t.name}}" style="height:250px">
+      </a>
+    </div>
 	</div>
 </div>
-
-

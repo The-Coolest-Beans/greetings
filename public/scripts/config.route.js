@@ -26,7 +26,7 @@ angular
           controller: 'homeCtrl',
         })
         .state('app.cards', {
-          url: '/cards',
+          url: '/cards/:themeId',
           templateUrl: 'views/cards.html',
           controller: 'cardsCtrl',
         })

@@ -1,4 +1,12 @@
 /*Used to stack text on top of images on the card customization page*/
-.stackedElement {
+#cardContainer {
+  position: relative;
+  z-index: 0;
+}
+
+#cardContent {
   position: absolute;
-} /*end outerStackedElement*/
+  top: 0;
+  left: 0;
+  z-index: 1;
+}

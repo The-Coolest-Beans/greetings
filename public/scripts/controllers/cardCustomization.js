@@ -43,6 +43,17 @@ angular
 
       }); // end api call block
 
+      $scope.customStyle = {};
+
+      //
+      // Change color of text
+      //
+      $scope.colors = ["red", "green", "blue", "black", "white", "brown", "yellow", "purple", "pink", "orange", "gray"];
+
+      $scope.changeColor = function(color){
+        $scope.customStyle.style = {"color":color};
+      } // end changeColor function
+
     } // end function
 
   ]); // end controller

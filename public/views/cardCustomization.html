@@ -6,7 +6,7 @@
     <a class="thumbnail" id="cardContainer">
       <img src="{{cardInfo.imagePath}}">
     </a>
-    <h1 class="col-md-12" ng-bind="customizeTextInput" align="center" id="cardContent" />
+    <h1 class="col-md-12" ng-bind="customizeTextInput" ng-style="customStyle.style" align="center" id="cardContent" />
   </div>
   <div class="col-md-4">
     <legend>Tools</legend>
@@ -16,7 +16,12 @@
     </div>
     <div class="row customizeCardField">
       <label class="col-md-4">Text Color:</label>
-      <div class="col-md-offset-4" style="background-color:red;width:20px;height:20px;"/>
+      <div class="dropdown col-md-offset-4">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Color <span class="caret" /></button>
+        <ul class="dropdown-menu">
+          <li ng-repeat="c in colors" ng-click="changeColor(c)"><a style="color:{{c}};">{{c}}</a></li>
+        </ul>
+      </div>
     </div>
     <div class="row customizeCardField">
       <label class="col-md-4">Text Font:</label>

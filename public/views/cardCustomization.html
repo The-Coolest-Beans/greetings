@@ -6,7 +6,7 @@
     <a class="thumbnail" id="cardContainer">
       <img src="{{cardInfo.imagePath}}">
     </a>
-    <h1 class="col-md-12" ng-bind="customizeTextInput" ng-style="customStyle.style" align="center" id="cardContent" />
+    <h1 class="col-md-12" ng-bind="customizeTextInput" ng-style="customStyle.style" style="font-family: {{selectedFontFamily}};"align="center" id="cardContent" />
   </div>
   <div class="col-md-4">
     <legend>Tools</legend>
@@ -19,13 +19,18 @@
       <div class="dropdown col-md-offset-4">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Color <span class="caret" /></button>
         <ul class="dropdown-menu">
-          <li ng-repeat="c in colors" ng-click="changeColor(c)"><a style="color:{{c}};">{{c}}</a></li>
+          <li ng-repeat="c in colors" ng-click="changeColor(c); updateCardText();"><a style="color:{{c}};">{{c}}</a></li>
         </ul>
       </div>
     </div>
     <div class="row customizeCardField">
       <label class="col-md-4">Text Font:</label>
-      <input class="col-md-8" type="text" value="Times New Roman" required autofocus>
+      <div class="dropdown col-md-offset-4">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Font <span class="caret" /></button>
+        <ul class="dropdown-menu">
+          <li ng-repeat="f in fonts" ng-click="changeFont(f); updateCardText();"><a style="font-family:{{f.FontFamily}};">{{f.FontName}}</a></li>
+        </ul>
+      </div>
     </div>
     <hr>
     <button type="button" class="btn btn-primary col-md-offset-5">Next Step</button>

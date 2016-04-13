@@ -6,7 +6,7 @@ angular
     function AppCtrl($stateParams, $scope) {
 
       // set the page title
-      $scope.pageTitle = "Scooper Cards";
+      $scope.pageTitle = "Cool Bean Cards";
 
       // listen for another view telling us what the web page title should be.
       $scope.$on('setPageTitle', function(event, data) {

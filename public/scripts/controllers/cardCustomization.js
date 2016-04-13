@@ -101,6 +101,9 @@ angular
       }];
       $scope.selectedFontFamily = "\"Times New Roman\", Times, serif";
 
+      // set up object to save all of the users data
+      $scope.cardInfo = {};
+
       // change font function
       $scope.changeFont = function(font){
 

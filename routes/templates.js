@@ -27,41 +27,24 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/:id', function(req, res, next){
+// Get templates by themeId
+router.get('/:themeId', function(req, res, next) {
 
-    var id = req.params.id;
-    templates.findAll({
-      where:{
-        id: id
-      }
-    }).then(function(idTemplate){
-        res.send(idTemplate)
-    });
-});
-
-/*router.get('/:theme', function(req, res, next){
-  var themeName = req.params.theme;
-  console.log("Themes request is ", req.params);
+  var themeId = req.params.themeId;
   templates.findAll({
     attributes: { exclude: ['deletedAt'] }, // Exclude from template JSON object
     include: [{
       model: Themes,
       through: {
-          attributes: { exclude: ['createdAt', 'updatedAt'] } // Exclude from templateThemes JSON object
+          attributes: { exclude: ['createdAt', 'updatedAt'] }
       },
-      attributes: { exclude: ['createdAt', 'updatedAt', 'id'] } // Exclude these attributes from theme JSON object
-    }],
+      where: { id: req.params.themeId},
+      attributes: { exclude: ['createdAt', 'updatedAt', 'id'] }
+    }]
+  }).then(function (cardTemplates) {
+    res.send(cardTemplates);
 
-    where:{
-      Themes:'Birthday'//{name:themeName}
-    }//closing where
+  });
+});
 
-
-
-  }).then(function(themeTemplates){
-    res.send(themeTemplates);
-  });//closing find all
-
-}); //closing router get
-*/
 module.exports = router;

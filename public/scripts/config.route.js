@@ -1,5 +1,15 @@
 'use strict';
 
+var generateUUID = function() {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+}
+
 angular
   .module('app')
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
@@ -11,6 +21,8 @@ angular
       //Set default routes for empty child route.
       $urlRouterProvider.when('/{coId:int}/Template', '/{coId:int}/template/list');
       $urlRouterProvider.when('/{coId:int}/template/', '/{coId:int}/template/list');
+
+      var customizePageUUID = generateUUID();
 
       // Application routes
       $stateProvider
@@ -26,7 +38,7 @@ angular
           controller: 'homeCtrl',
         })
         .state('app.cards', {
-          url: '/cards',
+          url: '/cards/:themeId',
           templateUrl: 'views/cards.html',
           controller: 'cardsCtrl',
         })
@@ -43,6 +55,11 @@ angular
         .state('app.cardCustomization', {
           url: '/customize/:cardID',
           templateUrl: 'views/cardCustomization.html',
+          controller: 'cardCustomizationCtrl',
+        })
+        .state('app.cardCustomizationPage2', {
+          url: '/customizeStep2/' + customizePageUUID,
+          templateUrl: 'views/cardCustomizationPage2.html',
           controller: 'cardCustomizationCtrl',
         })
     }

@@ -7,7 +7,6 @@ var users = require('../database/models/users.js'); // get users table from data
 /* GET home page. */
 router
   .post('/', function(req, res) {
-    console.log('I AM HERE LISTENTING TO YOU!!!!!!');
     console.log('req.body', req.body);
     //look up user here with username and password. if found, you'll have an user object.
 

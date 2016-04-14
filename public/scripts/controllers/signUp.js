@@ -114,14 +114,28 @@ angular.module('app')
 
         console.log("Creating Account!");
 
-        // TODO - Delete this noty once sign up actually gets working
-        noty({
-          timeout: 3000,
-          type: 'confirm', //blue. Also alert, information, confirm, error, warning
-          layout: 'topCenter',
-          text: 'Account created',
-          closeWith: ['button', 'click'],
-        }); // end noty block
+        //All the information is good, try to send verification email
+        console.log('Sending user info: ', $scope.newUserInfo);
+        $http.post('/sendAuthEmail', $scope.newUserInfo).success(function(result){
+
+          // save the results of the call
+          //$scope.templates = result.data;
+
+          //Let the user know that the email was sent.
+          noty({
+            timeout: 3000,
+            type: 'confirm', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'Verification Email sent. Please check your email (' + $scope.newUserInfo.email + ')',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+
+        }, function(e) {
+
+          // error occurred - print it
+          console.log('Post to user info errored.', e);
+
+        }); // end api call block
 
       }; // end Sign Up function
 

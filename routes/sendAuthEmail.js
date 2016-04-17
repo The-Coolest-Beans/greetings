@@ -40,6 +40,7 @@ router.post('/', function(req, res) {
 
   var userGUID = generateUUID(); //Create a userID for the new user.
 
+  //TODO: Make it to where emails that are already used don't get emails sent
   try {
     //Create new user here.
     var users = require('../database/models/users.js'); //get users table from database
@@ -61,20 +62,20 @@ router.post('/', function(req, res) {
 
   var validateLink = 'http://greetings.cs.nmsu.edu:3000/verifyUser/' + userGUID;
 
-  var emailBody = 'Hello ' + req.body.name + '. Welcome to Scooper Cards! Please click ' +
+  var emailBody = 'Hello ' + req.body.name + '. Welcome to Cool Bean Cards! Please click ' +
     'the link below to validate your email address so you can log in and ' +
     'use this wonderful website. VALIDATE LINK: ' + validateLink;
 
-  var emailBodyHTML = '<p>Hello <b>' + req.body.name + '</b>. Welcome to Scooper Cards! ' +
+  var emailBodyHTML = '<p>Hello <b>' + req.body.name + '</b>. Welcome to Cool Bean Cards! ' +
                       'Please click the link below to validate your email address so you ' +
                       'can log in and use this wonderful website.</p> <br/><br/> <p>VALIDATE ' +
                       'LINK: <a href="' + validateLink + '">' + validateLink + '</a></p>';
 
   // setup e-mail data with unicode symbols
   var mailOptions = {
-    from: '"Scooper Cards" <greetings@cs.nmsu.edu>', // sender address
+    from: '"Cool Bean Cards" <greetings@cs.nmsu.edu>', // sender address
     to: 'mikaela@steeleconsult.com',//req.body.email, //list of receivers
-    subject: 'Validate your Scooper Cards Account', //Subject line
+    subject: 'Validate your Cool Bean Cards Account', //Subject line
     text: emailBody, //plaintext body
     html: emailBodyHTML //html body
   };

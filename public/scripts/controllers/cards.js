@@ -46,7 +46,7 @@ angular
         });
       }
        else {
-        $http.get('/api/templates/' + $stateParams.themeId).then(function(result){
+        $http.get('/api/templates/by-theme/' + $stateParams.themeId).then(function(result){
 
           // save the results of the call
           $scope.templates = result.data;

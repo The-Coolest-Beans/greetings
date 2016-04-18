@@ -27,8 +27,23 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/:id', function(req, res, next) {
+
+  // Finds and retrieves all rows of the templates table (excluding date columns).
+  // After getting the data, the data will be sent to the API (That's what the 'then' is doing.)
+  // Sequelize documentation: http://docs.sequelizejs.com/en/latest/
+
+  templates.findAll({
+    attributes: { exclude: ['deletedAt'] }, // Exclude from template JSON object
+    where: { id: req.params.id }
+  }).then(function (cardTemplates) {
+    res.send(cardTemplates);
+
+  });
+});
+
 // Get templates by themeId
-router.get('/:themeId', function(req, res, next) {
+router.get('/by-theme/:themeId', function(req, res, next) {
 
   var themeId = req.params.themeId;
   templates.findAll({

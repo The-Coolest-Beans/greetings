@@ -1,5 +1,6 @@
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var tokenSecret = require('./tokenSecret');
+
 var authCheck = function(req, res, next) {
 
   // check header or url parameters or post parameters for token

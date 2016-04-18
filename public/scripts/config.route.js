@@ -52,6 +52,11 @@ angular
           templateUrl: 'views/signUp.html',
           controller: 'signUpCtrl',
         })
+        .state('app.verifyUser', {
+          url: '/verifyUser/:userID',
+          templateUrl: 'views/verifyUser.html',
+          controller: 'verifyUserCtrl',
+        })
         .state('app.cardCustomization', {
           url: '/customize/:cardID',
           templateUrl: 'views/cardCustomization.html',

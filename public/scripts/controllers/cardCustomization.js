@@ -19,7 +19,11 @@ angular
           console.log('Heard UserLogOut in layoutCtrl', $scope.user);
         });
       });
-
+      //If the user isn't logged in, send them back to the home page.
+      if(!$scope.user || !$scope.user.name) {
+        console.log('User isn\'t authenticated. Go back to home.');
+        $state.go('app.home');
+      }
       $scope.logout = function() {
         console.log('Logging out.');
         authService.logOut();

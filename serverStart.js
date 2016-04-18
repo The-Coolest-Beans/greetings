@@ -76,6 +76,9 @@ app.use('/api/myCards', myCards);
 var deleteCard = require('./routes/deleteCard');
 app.use('/api/deleteCard', deleteCard);
 
+var verifyUser = require('./routes/verifyUser');
+app.use('/api/verifyUser', verifyUser);
+
 var secureAccessTest = require('./routes/secureAccessTest');
 app.use('/api/secureAccessTest', secureAccessTest);
 

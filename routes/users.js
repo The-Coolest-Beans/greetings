@@ -7,7 +7,7 @@ var users = require('../database/models/users.js'); // get users table from data
 //router.use(authCheck);
 
 router.get('/', function(req, res, next) {
-  
+
   // Finds and retrieves all rows of the user table (excluding the (hashed) passwords column).
   // After getting the data, the data will be sent to the API (That's what the 'then' is doing.)
   // Sequelize documentation: http://docs.sequelizejs.com/en/latest/
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 	}).then(function (userList) {
 		res.send(userList);
 	});
-	
+
   /*res.send([
     {name:'sarah95', lastLogin: 'Monday', sent: 12},
     {name:'scooper', lastLogin: 'Saturday', sent: 23},
@@ -25,6 +25,19 @@ router.get('/', function(req, res, next) {
     {name:'beans-r-chilled', lastLogin: 'Thursday', sent: 45},
   ]);*/
 
-});
+})
+
+.get('/:userID', function(req, res, next){
+  var userID = req.params.userID;
+
+  users.find({
+    where: {
+        id: userID,
+    }
+  }).then(function (userData){
+    res.send(userData);
+  });
+
+});//closing get
 
 module.exports = router;

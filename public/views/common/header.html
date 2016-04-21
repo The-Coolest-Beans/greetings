@@ -28,15 +28,15 @@
                     <li><a href="#" ui-sref="app.cards({themeId: 1})"><img src="http://www.clker.com/cliparts/d/6/1/1/119498631918056439birthday_cake.svg.hi.png" width="25" height="25"> Birthday</a></li>
                     <li><a href="#" ui-sref="app.cards({themeId: 2})"><img src="http://4vector.com/i/free-vector-anniversary-icon_101839_Anniversary_Icon.png" width="25" height="25"> Anniversary</a></li>
                     <li><a href="#" ui-sref="app.cards({themeId: 3})"><img src="http://stauntonhealthandfitness.com/wp-content/uploads/2014/06/Best-Gym-Icon.png" width="25" height="25"> Congratulations</a></li>
-                    <li><a href="#" ui-sref="app.cards"><img src="http://downloadicons.net/sites/default/files/bouquets-of-beautiful-icons-36583.png" width="25" height="25"> Get Well</a></li>
-                    <li><a href="#" ui-sref="app.cards"><img src="http://vignette3.wikia.nocookie.net/clubpenguin/images/c/cf/Headstone.png/revision/latest?cb=20140815160924" width="25" height="25"> Sympathy</a></li>
+                    <li><a href="#" ui-sref="app.cards({themeId: 4})"><img src="http://downloadicons.net/sites/default/files/bouquets-of-beautiful-icons-36583.png" width="25" height="25"> Get Well</a></li>
+                    <li><a href="#" ui-sref="app.cards({themeId: 5})"><img src="http://vignette3.wikia.nocookie.net/clubpenguin/images/c/cf/Headstone.png/revision/latest?cb=20140815160924" width="25" height="25"> Sympathy</a></li>
                 </ul>
             </li>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li ng-show="!user.name" ui-sref="app.signUp"><a href="#">Sign Up</a></li>
-        <li ng-show="user.name"><a href="#">{{user.name}}</a></li>
+        <li ng-show="user.name"><a ui-sref="app.account">{{user.name}}</a></li>
         <li>
           <a ng-show="!user.name" ui-sref="app.login">Login</a>
           <a ng-show="user.name" ng-click="logout()">Logout</a>

@@ -67,5 +67,10 @@ angular
           templateUrl: 'views/cardCustomizationPage2.html',
           controller: 'cardCustomizationCtrl',
         })
+        .state('app.account', {
+          url: '/account/',
+          templateUrl: 'views/account.html',
+          controller: 'accountCtrl',
+        })
     }
   ]);

@@ -51,8 +51,8 @@ angular
       $scope.customStyle = {};
 
       // Make list of web-safe colors
-      $scope.colors = ["red", "green", "blue", "black", "white", "brown", "yellow", "purple", "pink", "orange", "gray"];
-      $scope.selectedColor = "black";
+      $scope.colors = ["White", "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Brown", "Gray"];
+      $scope.selectedColor = "Black";
 
       // change color function
       $scope.changeColor = function(color){
@@ -64,44 +64,44 @@ angular
 
       // list web-safe fonts
       $scope.fonts = [{
-        "FontName": "Times New Roman",
-        "FontFamily": "\"Times New Roman\", Times, serif"
-      }, {
-        "FontName": "Palatino Linotype",
-        "FontFamily": "\"Palatino Linotype\", \"Book Antiqua\", Palatino, serif"
-      }, {
-        "FontName": "Georgia",
-        "FontFamily": "Georgia, serif"
-      }, {
-        "FontName": "Verdana",
-        "FontFamily": "Verdana, Geneva, sans-serif"
-      }, {
-        "FontName": "Trebuchet MS",
-        "FontFamily": "\"Trebuchet MS\", Helvetica, sans-serif"
-      }, {
-        "FontName": "Tahoma",
-        "FontFamily": "Tahoma, Geneva, sans-serif"
-      }, {
-        "FontName": "Lucida Sans Unicode",
-        "FontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-      }, {
-        "FontName": "Impact",
-        "FontFamily": "Impact, Charcoal, sans-serif"
-      }, {
-        "FontName": "Comic Sans MS",
-        "FontFamily": "\"Comic Sans MS\", cursive, sans-serif"
+        "FontName": "Arial",
+        "FontFamily": "Arial, Helvetica, sans-serif"
       }, {
         "FontName": "Arial Black",
         "FontFamily": "\"Arial Black\", Gadget, sans-serif"
       }, {
-        "FontName": "Arial",
-        "FontFamily": "Arial, Helvetica, sans-serif"
+        "FontName": "Comic Sans MS",
+        "FontFamily": "\"Comic Sans MS\", cursive, sans-serif"
+      }, {
+        "FontName": "Courier New",
+        "FontFamily": "\"Courier New\", Courier, monospace"
+      }, {
+        "FontName": "Georgia",
+        "FontFamily": "Georgia, serif"
+      }, {
+        "FontName": "Impact",
+        "FontFamily": "Impact, Charcoal, sans-serif"
       }, {
         "FontName": "Lucida Console",
         "FontFamily": "\"Lucida Console\", Monaco, monospace"
       }, {
-        "FontName": "Courier New",
-        "FontFamily": "\"Courier New\", Courier, monospace"
+        "FontName": "Lucida Sans Unicode",
+        "FontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
+      }, {
+        "FontName": "Palatino Linotype",
+        "FontFamily": "\"Palatino Linotype\", \"Book Antiqua\", Palatino, serif"
+      }, {
+        "FontName": "Tahoma",
+        "FontFamily": "Tahoma, Geneva, sans-serif"
+      }, {
+        "FontName": "Times New Roman",
+        "FontFamily": "\"Times New Roman\", Times, serif"
+      }, {
+        "FontName": "Trebuchet MS",
+        "FontFamily": "\"Trebuchet MS\", Helvetica, sans-serif"
+      }, {
+        "FontName": "Verdana",
+        "FontFamily": "Verdana, Geneva, sans-serif"
       }];
       $scope.selectedFontFamily = "\"Times New Roman\", Times, serif";
 

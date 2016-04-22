@@ -85,6 +85,7 @@ angular.module('app')
         console.log("fillAuthData() authData:" ,authData);
         if (authData) {
           _authentication.isAuth = true;
+          _authentication.token = authData.token;
           _authentication.user = authData.user;
           console.log("user:" + _authentication.user);
           //$rootScope.$broadcast('UserAuthenticated', _authentication.user);
@@ -112,6 +113,12 @@ angular.module('app')
         return _authentication.user;
       }
 
+      var _getToken = function() {
+        console.log('getToken called.');
+        _fillAuthData();
+        return _authentication.token;
+      }
+
       authServiceFactory.saveRegistration = _saveRegistration;
       authServiceFactory.login = _login;
       authServiceFactory.logOut = _logOut;
@@ -120,6 +127,7 @@ angular.module('app')
       authServiceFactory.isAuthenticated = _isAuthenticated;
       authServiceFactory.getUserName = _getUserName;
       authServiceFactory.getUser = _getUser;
+      authServiceFactory.getToken = _getToken;
 
       authServiceFactory.fillAuthData(); //Fill authdata now if available. GJS
       //console.log("2) isAuth:" + _authentication.isAuth);

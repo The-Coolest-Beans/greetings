@@ -33,4 +33,16 @@ angular
 
     } // end function
 
+    $scope.cards = [];
+    // Get user's cards
+    $http.get('/api/myCards').then(function(result){
+
+          // save the results of the call
+          $scope.cards = result.data;
+
+          }, function(e) {
+            // error occurred - print it
+            console.log('Get call to templates errored.', e);
+        });
+
   ]); // end controller

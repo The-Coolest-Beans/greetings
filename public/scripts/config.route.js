@@ -62,9 +62,9 @@ angular
           templateUrl: 'views/cardCustomization.html',
           controller: 'cardCustomizationCtrl',
         })
-        .state('app.cardCustomizationPage2', {
-          url: '/customizeStep2/' + customizePageUUID,
-          templateUrl: 'views/cardCustomizationPage2.html',
+        .state('app.viewCard', {
+          url: '/viewCard/' + customizePageUUID,
+          templateUrl: 'views/viewCard.html',
           controller: 'cardCustomizationCtrl',
         })
         .state('app.account', {

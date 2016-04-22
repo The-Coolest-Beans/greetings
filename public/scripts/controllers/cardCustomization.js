@@ -7,6 +7,7 @@ angular
 
       //This is set to handle new logins and already loaded users.
       $scope.user = authService.getUser();
+      $scope.token = authService.getToken();
       $scope.$on('UserAuthenticated', function() {
         $timeout(function() {
           $scope.user = authService.getUser();
@@ -124,6 +125,36 @@ angular
         $scope.customStyle.style = {"color":$scope.selectedColor, "font-family":$scope.selectedFontFamily};
 
       } // end update card text function
+
+      $scope.createCard = function() {
+        
+        $http.post('/api/createCard', {
+          templateId: $scope.cardInfo.id, //This will link to the background image in the cardTemplate table
+          headerText: $scope.customizeTextInput,
+          headerTextColor: $scope.selectedColor,
+          bodyText: "",
+          bodyTextColor: "Black",
+          ownerId: $scope.user.id, // This is the GUID of the user who is creating the card
+          fontFamily: $scope.selectedFontFamily,
+          token: $scope.token
+        }).success(function(result) {
+
+          //Let the user know that the card was created.
+          noty({
+            timeout: 3000,
+            type: 'confirm', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'Card created.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+
+          $state.go('app.viewCard');
+
+        }, function(e) {
+          // error occurred - print it
+          console.log('Post to create card errored.', e);
+        });
+      }
 
     } // end function
 

@@ -17,8 +17,6 @@ var generateUUID = function() {
 
 }
 
-
-
 router.post('/' , function(req, res, next){
 
   console.log("Create call is called", req.body);//printing request data
@@ -35,6 +33,7 @@ router.post('/' , function(req, res, next){
     bodyText: req.body.bodyText,
     bodyTextColor: req.body.bodyTextColor, //Will be hexidecimal color code
     ownerId: user.id, // This is the GUID of the user who is creating the card
+    fontFamily: req.body.fontFamily
 
   })
   console.log("Done with sql insert");

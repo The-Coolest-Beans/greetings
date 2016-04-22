@@ -13,11 +13,12 @@ router.post('/', function(req, res, next) {
   //Had access to this company server, pass needs to be replaced with real password (need an account from nmsu to use instead).
   var transporter = nodemailer.createTransport('smtp://greetings%40cs.nmsu.edu:pass@mailsec.cs.nmsu.edu:587');
   var user = req.decoded;
+
   var fromString = '"' + user.name + '" <' + user.email + '>';
   console.log('recipient is ', req.body.toEmail);
   // setup e-mail data with unicode symbols
   var mailOptions = {
-    from: user.fromString,//'"Fred Foo 👥" <mikaela@steeleconsult.com>', // sender address
+    from: fromString,//'"Fred Foo 👥" <mikaela@steeleconsult.com>', // sender address
     to: req.body.toEmail,//'greg@steeleconsult.com, mikaela@nmsu.edu', // list of receivers
     subject: req.body.subject,//'Hello ✔', // Subject line
     text: req.body.plainText, //'Hello world 🐴', // plaintext body

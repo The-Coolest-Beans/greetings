@@ -88,6 +88,8 @@ app.use('/api/secureAccessTest', secureAccessTest);
 var connection_test = require('./routes/connection_test');
 app.use('/api/contest', connection_test);
 
+var admin = require('./routes/admin');
+app.use('/api/admin' , admin);
 //Serve all files from the public directory.
 app.use(express.static(process.cwd() + '/public'));
 

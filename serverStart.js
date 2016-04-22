@@ -73,6 +73,9 @@ app.use('/api/createCard', createCard);
 var myCards = require('./routes/myCards');
 app.use('/api/myCards', myCards);
 
+var sendCard = require('./routes/sendCard');
+app.use('/api/sendCard', sendCard);
+
 var deleteCard = require('./routes/deleteCard');
 app.use('/api/deleteCard', deleteCard);
 

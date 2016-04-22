@@ -2,17 +2,18 @@ var express = require('express'); //using express module
 var router = express.Router();
 var nodemailer = require('nodemailer');
 
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
   console.log('testSend called');
 
   // create reusable transporter object using the default SMTP transport
-  //Had access to this company server, pass needs to be replaced with real password (need an account from nmsu to use instead).
-  var transporter = nodemailer.createTransport('smtp://support%40responsivelearning.com:pass@smtp.steeleconsult.com');
+  var transporter = nodemailer.createTransport(
+    'smtp://greetings%40cs.nmsu.edu:pass@mailsec.cs.nmsu.edu:587'
+  );
 
   // setup e-mail data with unicode symbols
   var mailOptions = {
-    from: '"Fred Foo 👥" <mikaela@steeleconsult.com>', // sender address
-    to: 'greg@steeleconsult.com, mikaela@nmsu.edu', // list of receivers
+    from: '"Fred Foo 👥" <mikaela@nmsu.edu>', // sender address
+    to: 'sarah95@nmsu.edu;mikaela@steeleconsult.com', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world 🐴', // plaintext body
     html: '<b>Hello world 🐴</b>' // html body

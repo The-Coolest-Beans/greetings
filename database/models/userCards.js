@@ -31,6 +31,10 @@ var UserCards = db.define('userCards', {
     type: Sequelize.STRING,
     field: 'bodyTextColor'
   },
+  fontFamily: {
+    type: Sequelize.STRING,
+    field: 'fontFamily'
+  },
   ownerId: {
     type: Sequelize.STRING,
     field: 'ownerId'

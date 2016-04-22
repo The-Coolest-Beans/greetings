@@ -19,8 +19,8 @@ angular
           console.log('Heard UserLogOut in layoutCtrl', $scope.user);
         });
       });
-      //If the user isn't logged in, send them back to the home page.
-      if(!$scope.user || !$scope.user.name) {
+      //If the user isn't logged in or isn't an admin, send them back to the home page.
+      if(!$scope.user || !$scope.user.name || !$scope.user.adminTF) {
         console.log('User isn\'t authenticated. Go back to home.');
         $state.go('app.home');
       }
@@ -33,16 +33,6 @@ angular
 
     } // end function
 
-    $scope.cards = [];
-    // Get user's cards
-    $http.get('/api/myCards').then(function(result){
-
-          // save the results of the call
-          $scope.cards = result.data;
-
-          }, function(e) {
-            // error occurred - print it
-            console.log('Get call to templates errored.', e);
-        });
+    //TODO Code to bring back users and cards
 
   ]); // end controller

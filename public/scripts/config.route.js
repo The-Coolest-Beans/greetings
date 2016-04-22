@@ -72,5 +72,10 @@ angular
           templateUrl: 'views/account.html',
           controller: 'accountCtrl',
         })
+        .state('app.admin', {
+          url: '/admin/',
+          templateUrl: 'views/admin.html',
+          controller: 'adminCtrl',
+        })
     }
   ]);

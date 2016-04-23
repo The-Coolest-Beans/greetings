@@ -73,6 +73,9 @@ app.use('/api/createCard', createCard);
 var myCards = require('./routes/myCards');
 app.use('/api/myCards', myCards);
 
+var viewCard = require('./routes/viewCard');
+app.use('/api/viewCard', viewCard);
+
 var sendCard = require('./routes/sendCard');
 app.use('/api/sendCard', sendCard);
 

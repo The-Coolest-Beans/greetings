@@ -120,6 +120,7 @@ angular.module('app')
 
           // save the results of the call
           //$scope.templates = result.data;
+          console.log('result: ', result);
 
           //Let the user know that the email was sent.
           noty({

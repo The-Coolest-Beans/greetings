@@ -129,7 +129,10 @@ angular
 
       $scope.createCard = function() {
 
+        var customizePageUUID = generateUUID();
+
         $http.post('/api/createCard', {
+          id: customizePageUUID,
           templateId: $scope.cardInfo.id, //This will link to the background image in the cardTemplate table
           headerText: $scope.customizeTextInput,
           headerTextColor: $scope.selectedColor,
@@ -149,7 +152,7 @@ angular
             closeWith: ['button', 'click'],
           }); // end noty block
 
-          $state.go('app.viewCard');
+          $state.go('app.viewCard', {'cardID': customizePageUUID});
 
         }, function(e) {
           // error occurred - print it

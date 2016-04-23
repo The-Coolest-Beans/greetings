@@ -20,13 +20,13 @@ var generateUUID = function() {
 router.post('/' , function(req, res, next){
 
   console.log("Create call is called", req.body);//printing request data
-  var tempGuid = generateUUID();//making unique card id
-  console.log("guid created is " , tempGuid);
+  //var tempGuid = generateUUID();//making unique card id
+  console.log("guid created is " , req.body.id);
   var user = req.decoded; //user info
 
   userCards.create({//look into what create returns or do a try-catch
 
-    id: tempGuid, //generate a guid for this particular card as the id
+    id: req.body.id, //generate a guid for this particular card as the id
     templateId: req.body.templateId, //This will link to the background image in the cardTemplate table
     headerText: req.body.headerText,
     headerTextColor: req.body.headerTextColor, //Will be hexidecimal color code

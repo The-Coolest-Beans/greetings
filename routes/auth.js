@@ -59,7 +59,15 @@ router
             });
             return;
           }
-          console.log('User is verified and isn\'t banned.');
+          else if (user.deletedAt) {
+            console.log('User is deleted.');
+            res.json({
+              success: false,
+              message: 'Authentication failed. User has been deleted.'
+            });
+            return;
+          }
+          console.log('User is verified and isn\'t banned or deleted.');
 
           //If the password was correct and they are verified and not banned,
           //Then continue to generate the authentication token.

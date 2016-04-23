@@ -22,8 +22,6 @@ angular
       $urlRouterProvider.when('/{coId:int}/Template', '/{coId:int}/template/list');
       $urlRouterProvider.when('/{coId:int}/template/', '/{coId:int}/template/list');
 
-      var customizePageUUID = generateUUID();
-
       // Application routes
       $stateProvider
         .state('app', {
@@ -63,7 +61,7 @@ angular
           controller: 'cardCustomizationCtrl',
         })
         .state('app.viewCard', {
-          url: '/viewCard/' + customizePageUUID,
+          url: '/viewCard/:cardID',
           templateUrl: 'views/viewCard.html',
           controller: 'cardCustomizationCtrl',
         })

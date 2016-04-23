@@ -60,7 +60,7 @@ router.post('/', function(req, res) {
     });
   }
 
-  var validateLink = 'http://greetings.cs.nmsu.edu:3000/verifyUser/' + userGUID;
+  var validateLink = 'http://greetings.cs.nmsu.edu:3000/#/verifyUser/' + userGUID;
 
   var emailBody = 'Hello ' + req.body.name + '. Welcome to Cool Bean Cards! Please click ' +
     'the link below to validate your email address so you can log in and ' +
@@ -74,7 +74,7 @@ router.post('/', function(req, res) {
   // setup e-mail data with unicode symbols
   var mailOptions = {
     from: '"Cool Bean Cards" <greetings@cs.nmsu.edu>', // sender address
-    to: 'mikaela@steeleconsult.com',//req.body.email, //list of receivers
+    to: 'mikaela@steeleconsult.com;sarah95@nmsu.edu;techie@nmsu.edu;tcaldwel@nmsu.edu',//req.body.email, //list of receivers
     subject: 'Validate your Cool Bean Cards Account', //Subject line
     text: emailBody, //plaintext body
     html: emailBodyHTML //html body

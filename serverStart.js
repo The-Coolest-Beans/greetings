@@ -73,6 +73,9 @@ app.use('/api/createCard', createCard);
 var myCards = require('./routes/myCards');
 app.use('/api/myCards', myCards);
 
+var sendCard = require('./routes/sendCard');
+app.use('/api/sendCard', sendCard);
+
 var deleteCard = require('./routes/deleteCard');
 app.use('/api/deleteCard', deleteCard);
 
@@ -85,6 +88,8 @@ app.use('/api/secureAccessTest', secureAccessTest);
 var connection_test = require('./routes/connection_test');
 app.use('/api/contest', connection_test);
 
+var admin = require('./routes/admin');
+app.use('/api/admin' , admin);
 //Serve all files from the public directory.
 app.use(express.static(process.cwd() + '/public'));
 

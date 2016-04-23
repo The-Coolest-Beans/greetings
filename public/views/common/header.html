@@ -33,6 +33,11 @@
                 </ul>
             </li>
         </li>
+        <li ui-sref-active="active">
+            <li ng-show="user.adminTF" class="dropdown">
+                <a ui-sref="app.admin">Admin</a>
+            </li>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li ng-show="!user.name" ui-sref="app.signUp"><a href="#">Sign Up</a></li>

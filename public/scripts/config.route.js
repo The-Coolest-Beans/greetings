@@ -72,5 +72,15 @@ angular
           templateUrl: 'views/account.html',
           controller: 'accountCtrl',
         })
+        .state('app.admin', {
+          url: '/admin/',
+          templateUrl: 'views/admin.html',
+          controller: 'adminCtrl',
+        })
+        .state('app.yourCard', {
+          url: '/yourCard/:cardID',
+          templateUrl: 'views/yourCard.html',
+          controller: 'yourCardCtrl',
+        })
     }
   ]);

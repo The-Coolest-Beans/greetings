@@ -36,7 +36,13 @@ var Users = db.define('users', {
   verifiedTF: {
     type: Sequelize.BOOLEAN,
     field: 'verifiedTF'
+  },
+
+  deletedAt: {
+    type: Sequelize.DATE,
+    field: 'deletedAt'
   }
+
 }, {
   freezeTableName: true // Model tableName will be the same as the model name
 });

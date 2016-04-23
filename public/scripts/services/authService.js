@@ -7,6 +7,7 @@
  * # authService
  * Factory in the app.
  */
+
 angular.module('app')
   .factory('authService', ['$http', '$q', 'localStorageService', '$rootScope', '$state',
     function($http, $q, localStorageService, $rootScope, $state) {

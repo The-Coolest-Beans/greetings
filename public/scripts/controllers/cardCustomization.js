@@ -123,11 +123,12 @@ angular
 
         // actually update the card text style
         $scope.customStyle.style = {"color":$scope.selectedColor, "font-family":$scope.selectedFontFamily};
+        $scope.user.testing = "ABC123";
 
       } // end update card text function
 
       $scope.createCard = function() {
-        
+
         $http.post('/api/createCard', {
           templateId: $scope.cardInfo.id, //This will link to the background image in the cardTemplate table
           headerText: $scope.customizeTextInput,
@@ -154,6 +155,11 @@ angular
           // error occurred - print it
           console.log('Post to create card errored.', e);
         });
+      }
+
+      //DELETE ME
+      $scope.testFunc = function(){
+        console.log("Card Data:\nCard ID: " + $scope.user.testing);
       }
 
     } // end function

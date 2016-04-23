@@ -152,17 +152,12 @@ angular
             closeWith: ['button', 'click'],
           }); // end noty block
 
-          $state.go('app.viewCard', {'cardID': customizePageUUID});
+          $state.go('app.sendCard', {'cardID': customizePageUUID});
 
         }, function(e) {
           // error occurred - print it
           console.log('Post to create card errored.', e);
         });
-      }
-
-      //DELETE ME
-      $scope.testFunc = function(){
-        console.log("Card Data:\nCard ID: " + $scope.user.testing);
       }
 
     } // end function

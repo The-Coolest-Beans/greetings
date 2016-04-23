@@ -50,6 +50,7 @@ angular.module('app')
               deferred.reject(response);
               return deferred.promise;
             }
+            console.log('Logged in token: ', response.token);
             localStorageService.set('authorizationData', {
               token: response.token,
               user: response.user
@@ -81,14 +82,14 @@ angular.module('app')
       };
 
       var _fillAuthData = function() {
-        console.log('fillAuthData called.');
+        //console.log('fillAuthData called.');
         var authData = localStorageService.get('authorizationData');
-        console.log("fillAuthData() authData:" ,authData);
+        //console.log("fillAuthData() authData:" ,authData);
         if (authData) {
           _authentication.isAuth = true;
           _authentication.token = authData.token;
           _authentication.user = authData.user;
-          console.log("user:" + _authentication.user);
+          //console.log("user: ",  _authentication.user);
           //$rootScope.$broadcast('UserAuthenticated', _authentication.user);
         } else {
           //make sure we set auth to false so the route doesnt do anything
@@ -109,13 +110,13 @@ angular.module('app')
       }
 
       var _getUser = function() {
-        console.log('getUser called.');
+        //console.log('getUser called.');
         _fillAuthData();
         return _authentication.user;
       }
 
       var _getToken = function() {
-        console.log('getToken called.');
+        //console.log('getToken called.');
         _fillAuthData();
         return _authentication.token;
       }

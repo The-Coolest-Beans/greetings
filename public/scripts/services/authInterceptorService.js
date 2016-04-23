@@ -8,19 +8,19 @@ console.log("testing, authInterceptorService js file loading...");
  * Factory in the hbirdApp.
  */
 angular.module('app')
-.factory('authInterceptorService', ['$q', '$location', '$injector', '$window',
-function ($q, $location, $injector, $window) {
+.factory('authInterceptorService', ['$q', '$location', '$injector', '$window', 'localStorageService',
+function ($q, $location, $injector, $window, localStorageService) {
 
     var authInterceptorServiceFactory = {};
 
     var _request = function (config) {
         config.headers = config.headers || {};
         //TODO: You should pull the token from localstorage, where you put it when they logged in.
-        // var authData = localStorageService.get('authData');
-        // if (authData) {
-        //     config.headers.headers['x-access-token'] = authData.token;
-        // }
-        config.headers['x-access-token'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiR3JlZyIsInBhc3N3b3JkIjoicHdkMTIzNCIsImlhdCI6MTQ1NTMwNTQ3NCwiZXhwIjoxNDU1MzkxODc0fQ.U8ke0oFBbnFoZxGCccu2ZaJP_qBfLTJ6_VpQ88s4ifs';
+        var authData = localStorageService.get('authorizationData');
+        if (authData) {
+            config.headers['x-access-token'] = authData.token;
+        }
+        //config.headers['x-access-token'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiR3JlZyIsInBhc3N3b3JkIjoicHdkMTIzNCIsImlhdCI6MTQ1NTMwNTQ3NCwiZXhwIjoxNDU1MzkxODc0fQ.U8ke0oFBbnFoZxGCccu2ZaJP_qBfLTJ6_VpQ88s4ifs';
 
         return config;
     }

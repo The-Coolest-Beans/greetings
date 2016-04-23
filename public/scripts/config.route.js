@@ -60,10 +60,10 @@ angular
           templateUrl: 'views/cardCustomization.html',
           controller: 'cardCustomizationCtrl',
         })
-        .state('app.viewCard', {
-          url: '/viewCard/:cardID',
-          templateUrl: 'views/viewCard.html',
-          controller: 'cardCustomizationCtrl',
+        .state('app.sendCard', {
+          url: '/sendCard/:cardID',
+          templateUrl: 'views/sendCard.html',
+          controller: 'sendCardCtrl',
         })
         .state('app.account', {
           url: '/account/',
@@ -75,10 +75,10 @@ angular
           templateUrl: 'views/admin.html',
           controller: 'adminCtrl',
         })
-        .state('app.yourCard', {
-          url: '/yourCard/:cardID',
-          templateUrl: 'views/yourCard.html',
-          controller: 'yourCardCtrl',
+        .state('app.viewCard', {
+          url: '/viewCard/:cardID',
+          templateUrl: 'views/viewCard.html',
+          controller: 'viewCardCtrl',
         })
     }
   ]);

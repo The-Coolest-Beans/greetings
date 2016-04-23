@@ -5,8 +5,6 @@ var router = express.Router();//
 var authCheck = require('./authCheck');
 router.use(authCheck);
 
-
-
 var userCards = require('../database/models/userCards.js');//get user cards table from database
 
 router.get('/', function(req, res, next){
@@ -20,11 +18,31 @@ router.get('/', function(req, res, next){
     res.send(cardData);
   });
 
-});
+})
+
+.get('/:cardID', function(req, res) {
+  var decoded = req.decoded;
+  console.log('Get specific card by id: ', req.params.cardID);
+  console.log('decoded object: ', decoded);
+  userCards.find({
+    where: {
+        id:req.params.cardID, //get specific cardID
+        ownerId:decoded.id, //card belongs to logged in user
+        deletedAt:null, //all that haven't been deleted
+    }
+  }).then(function (cardData){
+    res.send(cardData);
+  }).catch(function (err) {
+    res.status(500).send({
+        success: false,
+        message: err
+    });
+  });
+})
 
 //this section deletes a card based on the id of that card
 router.delete('/:id', function(req, res, next){
-  var cardId = req/params.theme;
+  var cardId = req.params.theme;
   var date = new Date();
 
   userCards.update({

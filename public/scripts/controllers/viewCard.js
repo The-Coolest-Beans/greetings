@@ -2,7 +2,7 @@
 
 angular
   .module('app')
-  .controller('yourCardCtrl', ['$stateParams', '$scope', '$rootScope', '$http', 'authService', '$timeout', '$state',
+  .controller('viewCardCtrl', ['$stateParams', '$scope', '$rootScope', '$http', 'authService', '$timeout', '$state',
     function AppCtrl($stateParams, $scope, $rootScope, $http, authService, $timeout, $state) {
 
 

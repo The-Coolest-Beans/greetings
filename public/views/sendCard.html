@@ -6,10 +6,25 @@
     <a class="thumbnail" id="cardContainer">
       <img src="{{template.imagePath}}">
     </a>
-    <h1 class="col-md-12" ng-bind="card.headerText" ng-style="customStyle" style="font-family: {{card.fontFamily}};" align="center" id="cardContent" />
+    <h1 class="col-md-12" ng-bind="card.headerText" ng-style="customStyle" style="font-family: {{card.fontFamily}};" align="center" id="cardContent"/>
   </div>
   <div class="col-md-4">
     <h3>Send It</h3>
-    Send Card info goes here...
+    <div class="col-md-12">
+      <input type="email" class="form-control" placeholder="To Email" ng-model="toEmail" required autofocus>
+      <br/>
+      <input type="text" class="form-control" placeholder="Subject" ng-model="subject" required>
+      <br/>
+      <div id="divCommentHtmlEditor">
+        <text-angular  ng-model="bodyHTML" ta-toolbar="[['bold','italics','underline','strikeThrough'],['quote','ul','ol','undo','redo'],['clear']]"></text-angular>
+      </div>
+      <br/>
+      <button class="btn btn-info btn-block btn-lg mb15" type="submit" data-ng-click="loading=true; sendCard();">
+        <span ng-show="!loading">Send Card</span>
+        <span ng-show="loading">Sending... (please wait)
+          <i class="fa fa-spinner fa-pulse"></i>
+        </span>
+      </button>
+    </div>
   </div>
 </div>

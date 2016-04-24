@@ -43,6 +43,7 @@ router.post('/', function(req, res) {
   //TODO: Make it to where emails that are already used don't get emails sent
   try {
     //Create new user here.
+    console.log('try to create a new user.');
     var users = require('../database/models/users.js'); //get users table from database
     users.create({
       id: userGUID,
@@ -54,6 +55,7 @@ router.post('/', function(req, res) {
       verifiedTF: 0 //The new user has not been verified yet.
     });
   } catch (e) {
+    console.log('Couldn\'t create new user.');
     return res.status(400).send({
       success: false,
       message: 'User couldn\'t be created. Please try again in a few minutes.'

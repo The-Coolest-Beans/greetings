@@ -5,6 +5,7 @@ angular
   .controller('sendCardCtrl', ['$stateParams', '$scope', '$rootScope', '$http', 'authService', '$timeout', '$state',
     function AppCtrl($stateParams, $scope, $rootScope, $http, authService, $timeout, $state) {
       console.log('sendCardCtrl called...');
+      $scope.ShowEditorTF = false;
 
       //This is set to handle new logins and already loaded users.
       $scope.user = authService.getUser();
@@ -60,38 +61,54 @@ angular
         console.log('Get call to cards errored.', e);
       }); // end api call block
 
-      // $scope.createCard = function() {
-      //
-      //   var customizePageUUID = generateUUID();
-      //
-      //   $http.post('/api/createCard', {
-      //     id: customizePageUUID,
-      //     templateId: $scope.cardInfo.id, //This will link to the background image in the cardTemplate table
-      //     headerText: $scope.customizeTextInput,
-      //     headerTextColor: $scope.selectedColor,
-      //     bodyText: "",
-      //     bodyTextColor: "Black",
-      //     ownerId: $scope.user.id, // This is the GUID of the user who is creating the card
-      //     fontFamily: $scope.selectedFontFamily,
-      //     token: $scope.token
-      //   }).success(function(result) {
-      //
-      //     //Let the user know that the card was created.
-      //     noty({
-      //       timeout: 3000,
-      //       type: 'confirm', //blue. Also alert, information, confirm, error, warning
-      //       layout: 'topCenter',
-      //       text: 'Card created.',
-      //       closeWith: ['button', 'click'],
-      //     }); // end noty block
-      //
-      //     $state.go('app.viewCard', {'cardID': customizePageUUID});
-      //
-      //   }, function(e) {
-      //     // error occurred - print it
-      //     console.log('Post to create card errored.', e);
-      //   });
-      // };
+      $scope.sendCard = function() {
+        console.log('sendCard button clicked.');
+        if (!$scope.toEmail || !$scope.subject || !$scope.bodyHTML || $scope.bodyHTML.length <= 0)
+        {
+          noty({
+            timeout: 3000,
+            type: 'error', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'Please enter a "To Email", an email subject, and a message.',
+            closeWith: ['button', 'click'],
+          });
+          $scope.loading = false;
+          return;
+        }
+
+
+        if (document.getElementById && document.getElementById("divCommentHtmlEditor")) {
+          $scope.bodyPlain = document.getElementById("divCommentHtmlEditor").innerText;
+        };
+
+        console.log('try to send the card.');
+        $http.post('/api/sendCard', {
+          cardID: $scope.cardID,
+          toEmail: $scope.toEmail, // This is the GUID of the user who is creating the card
+          subject: $scope.subject,
+          htmlText: $scope.bodyHTML,
+          plainText: $scope.bodyPlain,
+
+        }).success(function(result) {
+
+          //Let the user know that the card was created.
+          noty({
+            timeout: 3000,
+            type: 'confirm', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'Card sent.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+
+          $state.go('app.viewCard', {'cardID': $scope.cardID});
+
+        }, function(e) {
+          // error occurred - print it
+          console.log('Post to create card errored.', e);
+          $scope.loading = false;
+          return;
+        });
+      };
 
     } // end function
 

@@ -38,6 +38,14 @@ var CardTemplates = db.define('cardTemplates', {
     type: Sequelize.STRING,
     field: 'defaultBodyTextColor'
   },
+  fontFamily: {
+    type: Sequelize.STRING,
+    field: 'fontFamily'
+  },
+  popularity: {
+    type: Sequelize.INTEGER,
+    field: 'popularity'
+  },
   deletedAt: {
     type: Sequelize.DATE,
     field: 'deletedAt'

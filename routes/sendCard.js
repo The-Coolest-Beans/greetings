@@ -7,6 +7,7 @@ router.use(authCheck);
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 var sentCards = require('../database/models/sentCards.js');//get sent cards table from database
+var templates = require('../database/models/cardTemplates.js');
 
 router.post('/', function(req, res, next) {
   console.log('sendCard called');
@@ -33,12 +34,16 @@ router.post('/', function(req, res, next) {
     fromAddress: fromString,
     emailBodyPlain: plainText,
     emailBodyHtml: htmlText
-  }).then(function (){
+  }).then(function () {
     console.log('Sent Card Transaction saved to database.');
   }).catch(function (err) {
     res.status(500).send({
         success: false,
         message: err
+    });
+  }).then(function() {
+    templates.findById(req.body.templateId).then(function(template) {
+      return template.increment('popularity', {by: 1});
     });
   });
 
@@ -67,6 +72,7 @@ router.post('/', function(req, res, next) {
       success: true,
       message: 'Email Sent'
     });//closing return
+
   });//closing send mail
 }); //closing post
 

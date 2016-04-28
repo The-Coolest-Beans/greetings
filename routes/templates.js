@@ -27,6 +27,24 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/popular', function(req, res, next) {
+
+  templates.findAll({
+    order: [['popularity', 'DESC']],
+    limit: 6,
+    attributes: { exclude: ['deletedAt'] }, // Exclude from template JSON object
+    include: [{
+      model: Themes,
+      through: {
+          attributes: { exclude: ['createdAt', 'updatedAt'] } // Exclude from templateThemes JSON object
+      },
+      attributes: { exclude: ['createdAt', 'updatedAt', 'id'] } // Exclude these attributes from theme JSON object
+    }]
+  }).then(function (cardTemplates) {
+    res.send(cardTemplates);
+  });
+});
+
 router.get('/:id', function(req, res, next) {
 
   // Finds and retrieves all rows of the templates table (excluding date columns).

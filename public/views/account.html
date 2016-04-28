@@ -1,4 +1,4 @@
-<div class="row" ng-controller="accountCtrl">
+<div class="row">
   <h4 class="col-md-12">Account Settings</h4>
 
   	<div class="input col-md-12">
@@ -22,6 +22,14 @@
    	  <div>
         <button class="btn btn-primary" data-ng-click="placeholderFunction();">Update Settings</button>
         <button class="btn btn-danger" data-ng-click="placeholderFunction();">Delete Account</button>
+      </div>
+    </div>
+
+  <h4 class="col-md-12">User Cards</h4>
+    <div class="input col-md-12">
+      <!-- Cards -->
+      <div ng-repeat="card in cards">
+        {{card.id}}
       </div>
     </div>
 

@@ -88,6 +88,7 @@ angular
           subject: $scope.subject,
           htmlText: $scope.bodyHTML,
           plainText: $scope.bodyPlain,
+          templateId: $scope.card.templateId
 
         }).success(function(result) {
 

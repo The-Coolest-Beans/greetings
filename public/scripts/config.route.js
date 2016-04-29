@@ -66,7 +66,7 @@ angular
           controller: 'sendCardCtrl',
         })
         .state('app.account', {
-          url: '/account/',
+          url: '/account',
           templateUrl: 'views/account.html',
           controller: 'accountCtrl',
         })

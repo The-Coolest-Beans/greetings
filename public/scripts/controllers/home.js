@@ -30,7 +30,7 @@ angular
       $scope.templates = [];
 
       // call the templates api
-      $http.get('/api/templates').then(function(result){
+      $http.get('/api/templates/popular').then(function(result){
 
         // save the results of the call
         $scope.templates = result.data;

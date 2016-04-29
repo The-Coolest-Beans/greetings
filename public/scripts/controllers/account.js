@@ -34,7 +34,7 @@ angular
       $scope.cards = [];
       // Get user's cards
       $http.get('/api/myCards').then(function(result){
-        
+
         // save the results of the call
         $scope.cards = result.data;
         console.log($scope.cards);
@@ -44,6 +44,11 @@ angular
           console.log('Get call to templates errored.', e);
       });
 
+      $scope.updateAccountInfo = function(){
+
+        console.log("Account Info:\nName: " + $scope.user.name + "\nEmail: " + $scope.user.email);
+
+      } // end function
 
     } // end function
 

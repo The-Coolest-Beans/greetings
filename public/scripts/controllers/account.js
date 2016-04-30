@@ -7,6 +7,10 @@ angular
 
       //This is set to handle new logins and already loaded users.
       $scope.user = authService.getUser();
+      $scope.newName = $scope.user.name;
+      $scope.newEmail = $scope.user.email;
+      $scope.newEmailRetype = $scope.newEmail;
+
       $scope.$on('UserAuthenticated', function() {
         $timeout(function() {
           $scope.user = authService.getUser();
@@ -30,27 +34,122 @@ angular
       };
 
       console.log($scope.user);
-
-      //$scope.cards = [];
-      // Get user's cards
-      // $http.get('/api/myCards').then(function(result){
-      //
-      //   // save the results of the call
-      //   $scope.cards = result.data;
-      //   console.log($scope.cards);
-      //
-      //   }, function(e) {
-      //     // error occurred - print it
-      //     console.log('Get call to templates errored.', e);
-      // });
+      $scope.emailChangedTF = false;
 
       $scope.updateAccountInfo = function(){
-        console.log("Account Info:\nName: " + $scope.user.name + "\nEmail: " + $scope.user.email);
+        console.log("Account Info:\nName: " + $scope.newName + "\nEmail: " + $scope.newEmail);
+
+        console.log('userEmail: ', $scope.user.email);
+        console.log('newEmail: ', $scope.newEmail);
+
+        if($scope.user.email != $scope.newEmail) {
+          $scope.emailChangedTF = true;
+        } else {
+          $scope.emailChangedTF = false;
+        }
+
+        console.log('Email changed? ', $scope.emailChangedTF);
+
+        if($scope.newEmail != $scope.newEmailRetype) {
+          noty({
+            timeout: 3000,
+            type: 'error', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'The Email fields don\'t match.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+          return;
+        }
+
+        if($scope.user.name == $scope.newName && !$scope.emailChangedTF) {
+          noty({
+            timeout: 3000,
+            type: 'confirm', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'No changes were made.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+          return;
+        }
+
+        $http.patch('/api/users/updateUser', {
+          userID: $scope.user.id,
+          name: $scope.newName, // This is the GUID of the user who is creating the card
+          email: $scope.newEmail,
+          emailChangedTF: $scope.emailChangedTF
+        }).success(function(result) {
+
+          console.log('Result: ', result);
+
+          if(result.success)
+          {
+            //Let the user know that the card was created.
+            noty({
+              timeout: 3000,
+              type: 'confirm', //blue. Also alert, information, confirm, error, warning
+              layout: 'topCenter',
+              text: result.message,
+              closeWith: ['button', 'click'],
+            }); // end noty block
+
+            $scope.logout();
+          }
+          else {
+            //Let the user know that the card was created.
+            noty({
+              timeout: 3000,
+              type: 'error', //blue. Also alert, information, confirm, error, warning
+              layout: 'topCenter',
+              text: result.message,
+              closeWith: ['button', 'click'],
+            }); // end noty block
+          }
+
+        }, function(e) {
+          // error occurred - print it
+          console.log('Post to create card errored.', e);
+          return;
+        });
 
       }; // end function
 
       $scope.deactivateAccount = function() {
         console.log('Deactivate the account for ' + $scope.user.email);
+
+        $http.delete('/api/users/deactivateAccount/' + $scope.user.id).success(function(result) {
+
+          console.log('Result: ', result);
+
+          if(result.success)
+          {
+            //Let the user know that the card was created.
+            noty({
+              timeout: 3000,
+              type: 'confirm', //blue. Also alert, information, confirm, error, warning
+              layout: 'topCenter',
+              text: result.message,
+              closeWith: ['button', 'click'],
+            }); // end noty block
+
+            $scope.logout();
+          }
+          else {
+            //Let the user know that the card was created.
+            noty({
+              timeout: 3000,
+              type: 'error', //blue. Also alert, information, confirm, error, warning
+              layout: 'topCenter',
+              text: result.message,
+              closeWith: ['button', 'click'],
+            }); // end noty block
+          }
+
+        }, function(e) {
+          // error occurred - print it
+          console.log('Post to create card errored.', e);
+          return;
+        });
+
       };
 
     } // end function

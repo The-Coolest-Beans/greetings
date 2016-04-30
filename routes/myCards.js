@@ -50,6 +50,28 @@ router.get('/sent', function(req, res, next){
 
 })
 
+// Get cards received
+router.get('/received', function(req, res, next){
+  
+  var decoded = req.decoded; //getting the user object
+  
+  sentCards.findAll({
+    where: {
+        toAddress:decoded.email,//all that match my ID
+    },
+    include: [{
+        model: userCards,
+        include: [{
+          model: templates,
+          attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+        }]
+    }]
+  }).then(function (cardData){
+    res.send(cardData);
+  });
+
+})
+
 .get('/:cardID', function(req, res) {
   var decoded = req.decoded;
   console.log('Get specific card by id: ', req.params.cardID);

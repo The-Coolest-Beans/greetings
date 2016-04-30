@@ -33,7 +33,7 @@ angular.module('app')
 
         var data = 'name=' + loginData.userName + '&password=' + loginData.password;
         var deferred = $q.defer();
-        console.log('Calling login with data=' + data);
+        //console.log('Calling login with data=' + data);
 
         $http.post(authServiceBase + 'auth', data, {
             headers: {
@@ -41,7 +41,7 @@ angular.module('app')
             }
           })
           .success(function(response) {
-            console.log('login result: success: ', response);
+            //console.log('login result: success: ', response);
             if(!response || !response.success) {
               //The response came back, but the data is bad.
               console.log('Login failed.');
@@ -50,7 +50,7 @@ angular.module('app')
               deferred.reject(response);
               return deferred.promise;
             }
-            console.log('Logged in token: ', response.token);
+            //console.log('Logged in token: ', response.token);
             localStorageService.set('authorizationData', {
               token: response.token,
               user: response.user

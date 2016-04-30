@@ -10,7 +10,7 @@ angular.module('app')
       // Sign Up Function
       $scope.signUpButtonClicked = function() {
 
-        console.log('Sign up clicked:\nName:', $scope.newUserInfo.name, "\nEmail: ", $scope.newUserInfo.email, "\nConfirm Email: ", $scope.newUserInfo.confirmEmail, "\nUsername: ", $scope.newUserInfo.username, "\nPassword: ", $scope.newUserInfo.password, "\nConfirm Password: ", $scope.newUserInfo.confirmPassword);
+        console.log('Sign up clicked:\nName:', $scope.newUserInfo.name, "\nEmail: ", $scope.newUserInfo.email, "\nConfirm Email: ", $scope.newUserInfo.confirmEmail, "\nPassword: ", $scope.newUserInfo.password, "\nConfirm Password: ", $scope.newUserInfo.confirmPassword);
 
         // Validate the name field
         if(!$scope.newUserInfo.name) {

@@ -1,26 +1,70 @@
-<div class="jumbotron">
-    <h2>My Cards</h2>
-    <p>Cards you have sent and recieved.</p>
+<div class="row">
+
+  <h4 class="col-md-12">Sent Cards:</h4>
+
+  <button type="button" class="btn btn-default col-md-1 col-md-offset-2" onclick="$('#sentCardCarousel').carousel('prev')">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  </button>
+
+  <div id="sentCardCarousel" class="carousel slide col-md-6" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="/images/templates/animals1.jpg">
+      </div>
+
+      <div class="item">
+        <img src="/images/templates/animals2.jpg">
+      </div>
+
+      <div class="item">
+        <img src="/images/templates/animals3.jpg">
+      </div>
+
+      <div class="item">
+        <img src="/images/templates/animals4.jpg">
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-default col-md-1" onclick="$('#sentCardCarousel').carousel('next')">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  </button>
+
 </div>
 
-<div class="container">
-  <h2>Popular Cards</h2>
-  <!-- This div will prevent unlogged in users from creating cards -->
-  <div class="row" ng-show="!user.name">
-    <div class="col-md-4" ng-repeat="t in templates">
-      <a href="#" class="thumbnail" ui-sref="app.login">
-        <p>{{t.name}}</p>
-        <img src="{{t.imagePath}}" alt="{{t.name}}" style="height:250px">
-      </a>
+<br />
+<hr class="col-md-12">
+<br />
+
+<div class="row">
+
+  <h4 class="col-md-12">Received Cards:</h4>
+
+  <button type="button" class="btn btn-default col-md-1 col-md-offset-2" onclick="$('#receivedCardCarousel').carousel('prev')">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  </button>
+
+  <div id="receivedCardCarousel" class="carousel slide col-md-6" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="/images/templates/birthday1.jpg">
+      </div>
+
+      <div class="item">
+        <img src="/images/templates/birthday2.jpg">
+      </div>
+
+      <div class="item">
+        <img src="/images/templates/birthday3.jpg">
+      </div>
+
+      <div class="item">
+        <img src="/images/templates/birthday4.jpg">
+      </div>
     </div>
   </div>
-  <!-- This div will allow logged in users to create cards -->
-  <div class="row" ng-show="user.name">
-    <div class="col-md-4" ng-repeat="t in templates">
-      <a href="#" class="thumbnail" ui-sref="app.cardCustomization({cardID: t.id})">
-        <p>{{t.name}}</p>
-        <img src="{{t.imagePath}}" alt="{{t.name}}" style="height:250px">
-      </a>
-    </div>
-  </div>
+
+  <button type="button" class="btn btn-default col-md-1" onclick="$('#receivedCardCarousel').carousel('next')">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  </button>
 </div>

@@ -1,0 +1,26 @@
+<div class="jumbotron">
+    <h2>My Cards</h2>
+    <p>Cards you have sent and recieved.</p>
+</div>
+
+<div class="container">
+  <h2>Popular Cards</h2>
+  <!-- This div will prevent unlogged in users from creating cards -->
+  <div class="row" ng-show="!user.name">
+    <div class="col-md-4" ng-repeat="t in templates">
+      <a href="#" class="thumbnail" ui-sref="app.login">
+        <p>{{t.name}}</p>
+        <img src="{{t.imagePath}}" alt="{{t.name}}" style="height:250px">
+      </a>
+    </div>
+  </div>
+  <!-- This div will allow logged in users to create cards -->
+  <div class="row" ng-show="user.name">
+    <div class="col-md-4" ng-repeat="t in templates">
+      <a href="#" class="thumbnail" ui-sref="app.cardCustomization({cardID: t.id})">
+        <p>{{t.name}}</p>
+        <img src="{{t.imagePath}}" alt="{{t.name}}" style="height:250px">
+      </a>
+    </div>
+  </div>
+</div>

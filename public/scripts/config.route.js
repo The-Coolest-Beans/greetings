@@ -35,6 +35,11 @@ angular
           templateUrl: 'views/home.html',
           controller: 'homeCtrl',
         })
+        .state('app.myCards', {
+          url: '/myCards',
+          templateUrl: 'views/myCards.html',
+          controller: 'myCardsCtrl',
+        })
         .state('app.cards', {
           url: '/cards/:themeId',
           templateUrl: 'views/cards.html',

@@ -20,6 +20,17 @@ router
         email: req.body.name
       }
     }).then(function(foundUser) {
+
+      //Check to see if a user was found, else error.
+      if(!foundUser) {
+        console.log('There is no matching user: ', foundUser);
+        res.json({
+          success: false,
+          message: 'Authentication failed. User doesn\'t exist.'
+        });
+        return;
+      }
+
       var user = foundUser.dataValues;
       console.log('Authenticate this user: ', user);
 

@@ -54,27 +54,6 @@ angular.module('app')
           return;
         } // end if
 
-        // Validate the username fields
-        if (!$scope.newUserInfo.username) {
-
-          return;
-
-        } // end if
-
-        if ($scope.newUserInfo.username.length <= 4) {
-
-          noty({
-            timeout: 3000,
-            type: 'error', //blue. Also alert, information, confirm, error, warning
-            layout: 'topCenter',
-            text: 'Username must be at least 5 characters long',
-            closeWith: ['button', 'click'],
-          }); // end noty block
-
-          $scope.loading = false;
-          return;
-        } // end if
-
         // Validate the password fields
         if (!$scope.newUserInfo.password || !$scope.newUserInfo.confirmPassword) {
 
@@ -116,27 +95,24 @@ angular.module('app')
 
         //All the information is good, try to send verification email
         console.log('Sending user info: ', $scope.newUserInfo);
-        $http.post('/sendAuthEmail', $scope.newUserInfo).success(function(result){
-
-          // save the results of the call
-          //$scope.templates = result.data;
-          console.log('result: ', result);
+        $http.post('/sendAuthEmail', $scope.newUserInfo).then(function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+          console.log('result: ', response);
 
           //Let the user know that the email was sent.
           noty({
             timeout: 3000,
             type: 'confirm', //blue. Also alert, information, confirm, error, warning
             layout: 'topCenter',
-            text: 'Verification Email sent. Please check your email (' + $scope.newUserInfo.email + ')',
+            text: response.message,//'Verification Email sent. Please check your email (' + $scope.newUserInfo.email + ')',
             closeWith: ['button', 'click'],
           }); // end noty block
-
-        }, function(e) {
-
-          // error occurred - print it
-          console.log('Post to user info errored.', e);
-
-        }); // end api call block
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          console.log('error: ', response);
+        });
 
       }; // end Sign Up function
 

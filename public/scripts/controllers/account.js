@@ -31,24 +31,27 @@ angular
 
       console.log($scope.user);
 
-      $scope.cards = [];
+      //$scope.cards = [];
       // Get user's cards
-      $http.get('/api/myCards').then(function(result){
-
-        // save the results of the call
-        $scope.cards = result.data;
-        console.log($scope.cards);
-
-        }, function(e) {
-          // error occurred - print it
-          console.log('Get call to templates errored.', e);
-      });
+      // $http.get('/api/myCards').then(function(result){
+      //
+      //   // save the results of the call
+      //   $scope.cards = result.data;
+      //   console.log($scope.cards);
+      //
+      //   }, function(e) {
+      //     // error occurred - print it
+      //     console.log('Get call to templates errored.', e);
+      // });
 
       $scope.updateAccountInfo = function(){
-
         console.log("Account Info:\nName: " + $scope.user.name + "\nEmail: " + $scope.user.email);
 
-      } // end function
+      }; // end function
+
+      $scope.deactivateAccount = function() {
+        console.log('Deactivate the account for ' + $scope.user.email);
+      };
 
     } // end function
 

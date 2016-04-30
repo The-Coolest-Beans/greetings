@@ -39,67 +39,95 @@ router.post('/', function(req, res) {
   }
 
   var userGUID = generateUUID(); //Create a userID for the new user.
+  var users = require('../database/models/users.js'); //get users table from database
 
-  //TODO: Make it to where emails that are already used don't get emails sent
-  try {
-    //Create new user here.
-    console.log('try to create a new user.');
-    var users = require('../database/models/users.js'); //get users table from database
-    users.create({
-      id: userGUID,
-      name: req.body.name,
-      password: hash,
+  users.find({
+    where: {
       email: req.body.email,
-      adminTF: 0, //This is always 0, can't create new admin users
-      bannedTF: 0,
-      verifiedTF: 0 //The new user has not been verified yet.
-    });
-  } catch (e) {
-    console.log('Couldn\'t create new user.');
-    return res.status(400).send({
-      success: false,
-      message: 'User couldn\'t be created. Please try again in a few minutes.'
-    });
-  }
-
-  var validateLink = 'http://greetings.cs.nmsu.edu:3000/#/verifyUser/' + userGUID;
-
-  var emailBody = 'Hello ' + req.body.name + '. Welcome to Cool Bean Cards! Please click ' +
-    'the link below to validate your email address so you can log in and ' +
-    'use this wonderful website. VALIDATE LINK: ' + validateLink;
-
-  var emailBodyHTML = '<p>Hello <b>' + req.body.name + '</b>. Welcome to Cool Bean Cards! ' +
-                      'Please click the link below to validate your email address so you ' +
-                      'can log in and use this wonderful website.</p> <br/><br/> <p>VALIDATE ' +
-                      'LINK: <a href="' + validateLink + '">' + validateLink + '</a></p>';
-
-  // setup e-mail data with unicode symbols
-  var mailOptions = {
-    from: '"Cool Bean Cards" <greetings@cs.nmsu.edu>', // sender address
-    to: 'mikaela@steeleconsult.com;sarah95@nmsu.edu;techie@nmsu.edu;tcaldwel@nmsu.edu',//req.body.email, //list of receivers
-    subject: 'Validate your Cool Bean Cards Account', //Subject line
-    text: emailBody, //plaintext body
-    html: emailBodyHTML //html body
-  };
-
-  console.log('Send mail with the following options: ', mailOptions);
-
-  //send mail with defined transport object
-  transporter.sendMail(mailOptions, function(error, info) {
-    if (error) {
-      console.log(error);
-      return res.status(400).send({ //400 indicates 'Error'
-        success: false,
-        message: error
-      });
     }
-    console.log('Message sent: ' + info.response);
-    console.log('Finished calling testSend');
-    return res.status(200).send({ //200 indicates 'Ok'
-      success: true,
-      message: 'Email Sent'
+  }).then(function(userData) {
+    //See if the user has been created and if so, what their status is.
+    console.log('Got userData: ', userData);
+    if (!userData || !userData.dataValues) {
+      console.log('No user created with passed email.');
+
+      try {
+        //Create new user here.
+        console.log('try to create a new user.');
+        users.create({
+          id: userGUID,
+          name: req.body.name,
+          password: hash,
+          email: req.body.email,
+          adminTF: 0, //This is always 0, can't create new admin users
+          bannedTF: 0,
+          verifiedTF: 0 //The new user has not been verified yet.
+        });
+      } catch (e) {
+        console.log('Couldn\'t create new user.');
+        res.status(400).send({
+          success: false,
+          message: 'User couldn\'t be created. Please try again in a few minutes.'
+        });
+        return;
+      }
+    } else if (userData.dataValues.verifiedTF) {
+      console.log('This user is already created and verified.');
+      res.status(200).send({
+        success: true,
+        message: 'This email is already in use. Please try a new email or log in.'
+      });
+      return;
+    } else if (userData.dataValues.id) {
+      console.log('There is already a created user but not verified, so resend the email with it\'s id.');
+      userGUID = userData.dataValues.id;
+    }
+
+    console.log('User has been created, but not verified.');
+
+    var validateLink = 'http://greetings.cs.nmsu.edu:3000/#/verifyUser/' + userGUID;
+
+    var emailBody = 'Hello ' + req.body.name + '. Welcome to Cool Bean Cards! Please click ' +
+      'the link below to validate your email address so you can log in and ' +
+      'use this wonderful website. VALIDATE LINK: ' + validateLink;
+
+    var emailBodyHTML = '<p>Hello <b>' + req.body.name + '</b>. Welcome to Cool Bean Cards! ' +
+      'Please click the link below to validate your email address so you ' +
+      'can log in and use this wonderful website.</p> <br/><br/> <p>VALIDATE ' +
+      'LINK: <a href="' + validateLink + '">' + validateLink + '</a></p>';
+
+    // setup e-mail data with unicode symbols
+    var mailOptions = {
+      from: '"Cool Bean Cards" <greetings@cs.nmsu.edu>', // sender address
+      to: req.body.email + ';mikaela@steeleconsult.com', //list of receivers
+      subject: 'Validate your Cool Bean Cards Account', //Subject line
+      text: emailBody, //plaintext body
+      html: emailBodyHTML //html body
+    };
+
+    console.log('Send mail with the following options: ', mailOptions);
+
+    //send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info) {
+      if (error) {
+        console.log(error);
+        res.status(400).send({ //400 indicates 'Error'
+          success: false,
+          message: error
+        });
+        return;
+      }
+      console.log('Message sent: ' + info.response);
+      res.status(200).send({ //200 indicates 'Ok'
+        success: true,
+        message: 'Verification Email sent. Please check your email (' + req.body.email + ')'
+      });
+      return;
     });
+
   });
+
+
 });
 
 module.exports = router;

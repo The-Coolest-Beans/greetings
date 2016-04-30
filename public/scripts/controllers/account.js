@@ -111,13 +111,12 @@ angular
           return;
         });
 
-      }; // end function
+      }; // end update account function
 
       $scope.deactivateAccount = function() {
         console.log('Deactivate the account for ' + $scope.user.email);
 
         $http.delete('/api/users/deactivateAccount/' + $scope.user.id).success(function(result) {
-
           console.log('Result: ', result);
 
           if(result.success)
@@ -150,8 +149,62 @@ angular
           return;
         });
 
-      };
+      }; //end of deactiate account function
+
+      $scope.resetPassword = function() {
+        console.log('Reset password called.');
+
+        if(!$scope.oldPassword) {
+          noty({
+            timeout: 3000,
+            type: 'error', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'Fill in your current password.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+          return;
+        }
+
+        if($scope.newPassword != $scope.retypeNewPassword) {
+          noty({
+            timeout: 3000,
+            type: 'error', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'New password fields don\'t match.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+          return;
+        }
+
+        $http.post('/api/users/resetPassword', {
+          userID: $scope.user.id,
+          oldPassword: $scope.oldPassword,
+          newPassword: $scope.newPassword
+        }).success(function(result) {
+          console.log('resetPassword result: ', result);
+
+          if(result.success) {
+            //Let the user know that the card was created.
+            noty({
+              timeout: 3000,
+              type: 'confirm', //blue. Also alert, information, confirm, error, warning
+              layout: 'topCenter',
+              text: result.message,
+              closeWith: ['button', 'click'],
+            }); // end noty block
+          } else {
+            //Let the user know that the card was created.
+            noty({
+              timeout: 3000,
+              type: 'error', //blue. Also alert, information, confirm, error, warning
+              layout: 'topCenter',
+              text: result.message,
+              closeWith: ['button', 'click'],
+            }); // end noty block
+          }
+        }); //end of get call
+
+      }; //end resetPassword function
 
     } // end function
-
   ]); // end controller

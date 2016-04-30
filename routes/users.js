@@ -1,4 +1,5 @@
 var express = require('express'); //using express module
+var bcrypt = require('bcrypt-nodejs');
 var router = express.Router();
 var users = require('../database/models/users.js'); // get users table from database
 var nodemailer = require('nodemailer');
@@ -43,6 +44,71 @@ router.get('/', function(req, res, next) {
     });
 
   }) //closing get
+
+.post('/resetPassword', function(req, res) {
+  console.log('resetPassword api called.');
+  var userID = req.body.userID;
+  console.log('resetPassword for userID: ', userID);
+
+  var decoded = req.decoded;
+
+  //If the logged in user doesn't match the passed ID nor are they an admin, error
+  if (decoded.id != userID && !decoded.adminTF) {
+    console.log('User doesn\'t match and not an admin.');
+    return res.status(400).send({ //400 indicates 'client error'
+      success: false,
+      message: 'User ins\'t authorized to make the change.'
+    });
+  }
+
+  users.find({
+    where: {
+      id: userID,
+    }
+  }).then(function(userData) {
+
+    if(!userData || !userData.dataValues) {
+      res.json({
+        success: false,
+        message: 'User doesn\'t exist.'
+      });
+      return;
+    }
+
+    var hash = bcrypt.hashSync(req.body.newPassword);
+    console.log('hashed new password: ', hash);
+
+    // check if password matches - this is where we hash the password
+    if (!bcrypt.compareSync(req.body.oldPassword, userData.dataValues.password)) {
+      console.log('User password doesn\'t match.');
+      //console.log('Passed Password: ', req.body.oldPassword);
+      //console.log('Saved Password: ', userData.dataValues.password);
+      res.status(200).send({
+        success: false,
+        message: 'The old password is incorrect.'
+      });
+      return;
+    }
+
+    //update the user record with the new password
+    users.update({
+        password: hash
+      }, {
+        where: {
+          id: userID, //Only update the passed user
+        } //closing where-in
+      }).then(function(newData) {
+        console.log('updated the record with new password.');
+        res.status(200).send({
+          success: true,
+          message: 'Password updated.'
+        });
+        return;
+      }) //closing update
+
+  }); //end of user find
+
+}) //closing reset password
 
 .patch('/updateUser', function(req, res) {
     console.log('updateUser called.');

@@ -37,40 +37,30 @@
     <h4 class="col-md-12">Change Password</h4>
 
       <div class="input col-md-12">
-        <!-- Old Password -->
         <label>Old Password</label>
         <div>
-          <input class="col-md-12" type="password" id="oldPassword" data-ng-model="user.oldPassword" placeholder="Old Password" required>
+          <input class="col-md-12" type="password" id="oldPassword" data-ng-model="oldPassword" placeholder="Old Password" required>
         </div>
       </div>
 
       <div class="input col-md-12">
-        <!-- New Password -->
         <label>New Password</label>
         <div>
-          <input class="col-md-12" type="password" id="newPassword" data-ng-model="user.newPassword" placeholder="New Password" required>
+          <input class="col-md-12" type="password" id="newPassword" data-ng-model="newPassword" placeholder="New Password" required>
         </div>
       </div>
 
       <div class="input col-md-12">
-        <!-- Retype New Password -->
         <label>Re-type New Password</label>
         <div>
-          <input class="col-md-12" type="password" id="retypeNewPassword" data-ng-model="user.retypeNewPassword" placeholder="Re-type New Password" required>
+          <input class="col-md-12" type="password" id="retypeNewPassword" data-ng-model="retypeNewPassword" placeholder="Re-type New Password" required>
         </div>
       </div>
 
       <div class="input col-md-12">
-        <!-- Buttons -->
         <div>
-          <button class="btn btn-primary" data-ng-click="">Update Password</button>
+          <button class="btn btn-primary" data-ng-click="resetPassword()">Update Password</button>
         </div>
       </div>
-  <!-- <h4 class="col-md-12">User Cards</h4>
-    <div class="input col-md-12">
-      <div ng-repeat="card in cards">
-        {{card.id}}
-      </div>
-    </div> -->
 
 </div>

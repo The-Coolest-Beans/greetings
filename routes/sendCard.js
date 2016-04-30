@@ -43,7 +43,7 @@ router.post('/', function(req, res, next) {
     });
   }).then(function() {
     templates.findById(req.body.templateId).then(function(template) {
-      return template.increment('popularity', {by: 1});
+      template.increment('popularity', {by: 1});
     });
   });
 
@@ -72,8 +72,8 @@ router.post('/', function(req, res, next) {
       success: true,
       message: 'Email Sent'
     });//closing return
-
   });//closing send mail
+  
 }); //closing post
 
 module.exports = router;

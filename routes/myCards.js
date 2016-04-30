@@ -5,15 +5,45 @@ var router = express.Router();//
 var authCheck = require('./authCheck');
 router.use(authCheck);
 
+var Sequelize = require('sequelize');
 var userCards = require('../database/models/userCards.js');//get user cards table from database
+var sentCards = require('../database/models/sentCards.js');//get user cards table from database
+var templates = require('../database/models/cardTemplates.js');
 
 router.get('/', function(req, res, next){
   var decoded = req.decoded; //getting the user object
+
   userCards.findAll({
     where: {
         ownerId:decoded.id,//all that match my ID
         deletedAt:null, //all that haven't been deleted
-    }
+    },
+    include: [{
+        model: templates,
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+    }]
+  }).then(function (cardData){
+    res.send(cardData);
+  });
+
+})
+
+// Get cards sent
+router.get('/sent', function(req, res, next){
+  
+  var decoded = req.decoded; //getting the user object
+  
+  sentCards.findAll({
+    where: {
+        userId:decoded.id,//all that match my ID
+    },
+    include: [{
+        model: userCards,
+        include: [{
+          model: templates,
+          attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+        }]
+    }]
   }).then(function (cardData){
     res.send(cardData);
   });

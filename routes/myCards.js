@@ -15,8 +15,8 @@ router.get('/', function(req, res, next){
 
   userCards.findAll({
     where: {
-        ownerId:decoded.id,//all that match my ID
-        deletedAt:null, //all that haven't been deleted
+        ownerId: decoded.id,//all that match my ID
+        deletedAt: null, //all that haven't been deleted
     },
     include: [{
         model: templates,
@@ -42,7 +42,10 @@ router.get('/sent', function(req, res, next){
         include: [{
           model: templates,
           attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
-        }]
+        }],
+        where: {
+          deletedAt: null //all that haven't been deleted
+        }
     }]
   }).then(function (cardData){
     res.send(cardData);
@@ -64,7 +67,10 @@ router.get('/received', function(req, res, next){
         include: [{
           model: templates,
           attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
-        }]
+        }],
+        where: {
+          deletedAt: null //all that haven't been deleted
+        }
     }]
   }).then(function (cardData){
     res.send(cardData);
@@ -78,9 +84,9 @@ router.get('/received', function(req, res, next){
   console.log('decoded object: ', decoded);
   userCards.find({
     where: {
-        id:req.params.cardID, //get specific cardID
-        ownerId:decoded.id, //card belongs to logged in user
-        deletedAt:null, //all that haven't been deleted
+        id: req.params.cardID, //get specific cardID
+        ownerId: decoded.id, //card belongs to logged in user
+        deletedAt: null, //all that haven't been deleted
     }
   }).then(function (cardData){
     res.send(cardData);

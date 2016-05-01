@@ -62,6 +62,35 @@ angular
 
       }); // end api call block
 
+      // method called when a card is delted from the mycards page
+      $scope.deleteCard = function(index) {
+
+        // find out which card needs to be deleted
+        var cardToDelete;
+        if (index == 0)
+          cardToDelete = $scope.firstSentCard;
+        else
+          cardToDelete = $scope.sentCards[index-1];
+
+        // actually call the API to delete the card
+        $http.patch('/api/deleteCard', 'id=' + cardToDelete.cardId, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } ).then( function(result){
+
+          // remove the card from the carousel
+          var carousel = $('#sentCardCarousel');
+          var ActiveElement = carousel.find('.item.active');
+          ActiveElement.remove();
+          var NextElement = carousel.find('.item').first();
+          NextElement.addClass('active');
+
+        }, function(e) {
+
+          // error occurred - print it
+          console.log('Patch call to delete cards errored.', e);
+
+        }); // end api call block
+
+      };
+
     } // end function
 
   ]); // end controller

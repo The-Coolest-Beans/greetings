@@ -8,21 +8,17 @@
 
   <div id="sentCardCarousel" class="carousel slide col-md-6" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
+
       <div class="item active">
-        <img src="/images/templates/animals1.jpg">
+        <h1 class="col-md-12" align="center" style="color:{{firstSentCard.userCard.headerTextColor}};font-family:{{firstSentCard.userCard.fontFamily}};font-size:large;" id="cardContent">{{firstSentCard.userCard.headerText}}</h1>
+        <img src="{{firstSentCard.userCard.cardTemplate.imagePath}}">
       </div>
 
-      <div class="item">
-        <img src="/images/templates/animals2.jpg">
+      <div class="item" ng-repeat="card in sentCards">
+        <h1 class="col-md-12" align="center" style="color:{{card.userCard.headerTextColor}};font-family:{{card.userCard.fontFamily}};font-size:large;" id="cardContent">{{card.userCard.headerText}}</h1>
+        <img src="{{card.userCard.cardTemplate.imagePath}}">
       </div>
 
-      <div class="item">
-        <img src="/images/templates/animals3.jpg">
-      </div>
-
-      <div class="item">
-        <img src="/images/templates/animals4.jpg">
-      </div>
     </div>
   </div>
 
@@ -46,21 +42,17 @@
 
   <div id="receivedCardCarousel" class="carousel slide col-md-6" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
+
       <div class="item active">
-        <img src="/images/templates/birthday1.jpg">
+        <h1 class="col-md-12" align="center" style="color:{{firstReceivedCard.userCard.headerTextColor}};font-family:{{firstReceivedCard.userCard.fontFamily}};font-size:large;" id="cardContent">{{firstReceivedCard.userCard.headerText}}</h1>
+        <img src="{{firstReceivedCard.userCard.cardTemplate.imagePath}}">
       </div>
 
-      <div class="item">
-        <img src="/images/templates/birthday2.jpg">
+      <div class="item" ng-repeat="card in receivedCards">
+        <h1 class="col-md-12" align="center" style="color:{{card.userCard.headerTextColor}};font-family:{{card.userCard.fontFamily}};font-size:large;" id="cardContent">{{card.userCard.headerText}}</h1>
+        <img src="{{card.userCard.cardTemplate.imagePath}}">
       </div>
 
-      <div class="item">
-        <img src="/images/templates/birthday3.jpg">
-      </div>
-
-      <div class="item">
-        <img src="/images/templates/birthday4.jpg">
-      </div>
     </div>
   </div>
 

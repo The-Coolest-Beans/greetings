@@ -93,7 +93,11 @@ app.use('/api/contest', connection_test);
 
 var admin = require('./routes/admin');
 app.use('/api/admin' , admin);
+
+var updatePassword = require('./routes/updatePassword');
+app.use('/api/updatePassword', updatePassword);
 //Serve all files from the public directory.
+
 app.use(express.static(process.cwd() + '/public'));
 
 console.log('Express server listening on port ' + serverPort);

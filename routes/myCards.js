@@ -20,7 +20,7 @@ router.get('/', function(req, res, next){
     },
     include: [{
         model: templates,
-        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+        attributes: { exclude: [ 'deletedAt'] }
     }]
   }).then(function (cardData) {
     res.send(cardData);
@@ -30,9 +30,9 @@ router.get('/', function(req, res, next){
 
 // Get cards sent
 router.get('/sent', function(req, res, next){
-  
+
   var decoded = req.decoded; //getting the user object
-  
+
   sentCards.findAll({
     where: {
         userId:decoded.id,//all that match my ID
@@ -41,7 +41,7 @@ router.get('/sent', function(req, res, next){
         model: userCards,
         include: [{
           model: templates,
-          attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+          attributes: { exclude: ['deletedAt'] }
         }],
         where: {
           deletedAt: null //all that haven't been deleted
@@ -55,9 +55,9 @@ router.get('/sent', function(req, res, next){
 
 // Get cards received
 router.get('/received', function(req, res, next){
-  
+
   var decoded = req.decoded; //getting the user object
-  
+
   sentCards.findAll({
     where: {
         toAddress:decoded.email,//all that match my ID

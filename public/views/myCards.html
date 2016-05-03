@@ -10,11 +10,17 @@
     <div class="carousel-inner" role="listbox">
 
       <div class="item active">
+        <button type="button" class="btn btn-default col-md-1 col-md-offset-11" id=cardContent data-ng-click="deleteCard('0');">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
         <h1 class="col-md-12" align="center" style="color:{{firstSentCard.userCard.headerTextColor}};font-family:{{firstSentCard.userCard.fontFamily}};font-size:large;" id="cardContent">{{firstSentCard.userCard.headerText}}</h1>
         <img src="{{firstSentCard.userCard.cardTemplate.imagePath}}">
       </div>
 
       <div class="item" ng-repeat="card in sentCards">
+        <button type="button" class="btn btn-default col-md-1 col-md-offset-11" id=cardContent data-ng-click="deleteCard($index+1);">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
         <h1 class="col-md-12" align="center" style="color:{{card.userCard.headerTextColor}};font-family:{{card.userCard.fontFamily}};font-size:large;" id="cardContent">{{card.userCard.headerText}}</h1>
         <img src="{{card.userCard.cardTemplate.imagePath}}">
       </div>

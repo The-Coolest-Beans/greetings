@@ -55,6 +55,11 @@ angular
           templateUrl: 'views/signUp.html',
           controller: 'signUpCtrl',
         })
+        .state('app.forgotPassword', {
+          url: '/forgotPassword',
+          templateUrl: 'views/forgotPassword.html',
+          controller: 'forgotPasswordCtrl',
+        })
         .state('app.verifyUser', {
           url: '/verifyUser/:userID',
           templateUrl: 'views/verifyUser.html',

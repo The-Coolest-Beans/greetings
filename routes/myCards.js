@@ -22,7 +22,7 @@ router.get('/', function(req, res, next){
         model: templates,
         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
     }]
-  }).then(function (cardData){
+  }).then(function (cardData) {
     res.send(cardData);
   });
 

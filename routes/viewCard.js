@@ -10,13 +10,14 @@ router.get('/:cardID', function(req, res) {
         deletedAt:null, //all that haven't been deleted
     }
   }).then(function (cardData){
+    cardData.increment('views', {by: 1});
     res.send(cardData);
   }).catch(function (err) {
     res.status(500).send({
         success: false,
         message: err
     });
-  });
+  })
 })
 
 module.exports = router;

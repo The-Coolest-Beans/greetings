@@ -8,7 +8,7 @@ angular.module('app')
       $scope.passwordReset = function() {
         console.log('passwordReset function called.');
 
-        if($scope.email != $scope.confirmEmail) {
+        if($scope.userEmail != $scope.confirmEmail) {
           noty({
             timeout: 3000,
             type: 'error', //blue. Also alert, information, confirm, error, warning
@@ -19,7 +19,7 @@ angular.module('app')
           return;
         }
 
-        $http.post('/api/updatePassword', $scope.email).then(function successCallback(response) {
+        $http.post('/api/updatePassword', { "userEmail" : $scope.userEmail}).then(function successCallback(response) {
           // this callback will be called asynchronously
           // when the response is available
           console.log('result: ', response);
@@ -29,7 +29,7 @@ angular.module('app')
             timeout: 3000,
             type: 'confirm', //blue. Also alert, information, confirm, error, warning
             layout: 'topCenter',
-            text: response.message,
+            text: response.data.message,
             closeWith: ['button', 'click'],
           }); // end noty block
         }, function errorCallback(response) {

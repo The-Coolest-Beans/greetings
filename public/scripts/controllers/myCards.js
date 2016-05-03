@@ -27,20 +27,69 @@ angular
       };
 
       // clear out the templates array
-      $scope.templates = [];
+      $scope.sentCards = [];
 
-      // call the templates api
-      $http.get('/api/templates/popular').then(function(result){
+      // call the api to get the sent cards
+      $http.get('/api/myCards/sent').then(function(result){
 
         // save the results of the call
-        $scope.templates = result.data;
+        $scope.sentCards = result.data;
+        $scope.firstSentCard = $scope.sentCards[0];
+        $scope.sentCards.splice(0, 1);
 
       }, function(e) {
 
         // error occurred - print it
-        console.log('Get call to templates errored.', e);
+        console.log('Get call to sent cards errored.', e);
 
       }); // end api call block
+
+      // clear out the templates array
+      $scope.receivedCards = [];
+
+      // call the api to get the sent cards
+      $http.get('/api/myCards/received').then(function(result){
+
+        // save the results of the call
+        $scope.receivedCards = result.data;
+        $scope.firstReceivedCard = $scope.receivedCards[0];
+        $scope.receivedCards.splice(0, 1);
+
+      }, function(e) {
+
+        // error occurred - print it
+        console.log('Get call to sent cards errored.', e);
+
+      }); // end api call block
+
+      // method called when a card is delted from the mycards page
+      $scope.deleteCard = function(index) {
+
+        // find out which card needs to be deleted
+        var cardToDelete;
+        if (index == 0)
+          cardToDelete = $scope.firstSentCard;
+        else
+          cardToDelete = $scope.sentCards[index-1];
+
+        // actually call the API to delete the card
+        $http.patch('/api/deleteCard', 'id=' + cardToDelete.cardId, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } } ).then( function(result){
+
+          // remove the card from the carousel
+          var carousel = $('#sentCardCarousel');
+          var ActiveElement = carousel.find('.item.active');
+          ActiveElement.remove();
+          var NextElement = carousel.find('.item').first();
+          NextElement.addClass('active');
+
+        }, function(e) {
+
+          // error occurred - print it
+          console.log('Patch call to delete cards errored.', e);
+
+        }); // end api call block
+
+      };
 
     } // end function
 

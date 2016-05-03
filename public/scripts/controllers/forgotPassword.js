@@ -19,7 +19,7 @@ angular.module('app')
           return;
         }
 
-        $http.post('/api/users/updatePassword', $scope.email).then(function successCallback(response) {
+        $http.post('/api/updatePassword', $scope.email).then(function successCallback(response) {
           // this callback will be called asynchronously
           // when the response is available
           console.log('result: ', response);

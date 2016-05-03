@@ -39,6 +39,10 @@ var UserCards = db.define('userCards', {
     type: Sequelize.STRING,
     field: 'ownerId'
   },
+  views: {
+    type: Sequelize.INTEGER,
+    field: 'views'
+  },
   deletedAt: {
     type: Sequelize.DATE,
     field: 'deletedAt'

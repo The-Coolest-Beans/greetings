@@ -57,10 +57,19 @@ angular.module('app')
             });
             _authentication.isAuth = true;
             _authentication.user = loginData.user;
-
+            console.log(_authentication.user);
             $rootScope.$broadcast('UserAuthenticated', _authentication.user);
 
+            // Mark user as logged in.
+            $http.patch('/api/users/login').then(function(result) {
+              console.log('userwasloggedin', result);
+            }, function(e) {
+              // error occurred - print it
+              console.log('userwasloggedin', e);
+            });
+
             deferred.resolve(response);
+
           }).error(function(err, status) {
             console.log('Login result: error');
             console.log(err);
@@ -73,12 +82,17 @@ angular.module('app')
       };
 
       var _logOut = function() {
-        localStorageService.remove('authorizationData');
-        _authentication.isAuth = false;
-        _authentication.user = {};
-        console.log('logging out and redirecting to login.');
-        $rootScope.$broadcast('UserLogOut');
-        $state.go('app.login');
+        // Mark user as logged in.
+        $http.patch('/api/users/logout').then(function(result) {
+          console.log('userwasloggedout', result);
+        }).then(function() {
+          localStorageService.remove('authorizationData');
+          _authentication.isAuth = false;
+          _authentication.user = {};
+          console.log('logging out and redirecting to login.');
+          $rootScope.$broadcast('UserLogOut');
+          $state.go('app.login');
+        });
       };
 
       var _fillAuthData = function() {

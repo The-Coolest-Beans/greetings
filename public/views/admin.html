@@ -1,4 +1,59 @@
 <div class="row" ng-controller="adminCtrl">
-  <h4 class="col-md-12">Admin Settings</h4>
+  <h3 class="col-md-12">Administrator</h3>
   <!-- TODO: Add ability to see all users and all cards -->
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">User List</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-4" style="padding-bottom: 10px">
+			      <input type="text" class="form-control" placeholder="Search" ng-model="searchWord">
+				</div>
+
+				<div class="col-md-12" style="height: 500px !important; overflow: scroll;">
+					<table class="table">
+						<tr>
+							<th ng-click="sortType = 'name'; sortReverse = !sortReverse">
+								User
+								<span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+		        				<span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+							</th>
+							<th ng-click="sortType = 'email'; sortReverse = !sortReverse">Email
+								<span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+		        				<span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span>
+							</th>
+							<th ng-click="sortType = 'loggedIn'; sortReverse = !sortReverse">
+								Status
+								<span ng-show="sortType == 'loggedIn' && !sortReverse" class="fa fa-caret-down"></span>
+		        				<span ng-show="sortType == 'loggedIn' && sortReverse" class="fa fa-caret-up"></span>
+							</th>
+							<th>Actions
+							</th>
+						</tr>
+						<tr ng-repeat="user in users  | filter: searchWord | orderBy:[sortType, 'bannedTF']:sortReverse">
+							<td>
+								{{user.name}}
+							</td>
+							<td>
+								{{user.email}}
+							</td>
+							<td>
+								<span ng-show='!user.loggedIn && !user.bannedTF' style="color: lightgray">Offline</span>
+								<span ng-show='user.loggedIn && !user.bannedTF' style="color: green">Online</span>
+								<span ng-show='user.bannedTF' style="color: red">Banned</span>
+							</td>
+							<td>
+								<input ng-show='!user.bannedTF' type="button" value="Ban" class="btn btn-danger" ng-click="banUser(user.id); user.bannedTF= true"/>
+								<input ng-show='user.bannedTF' type="button" value="Unban" class="btn btn-danger" ng-click="unbanUser(user.id); user.bannedTF= false"/>
+								<input type="button" value="Profile" class="btn btn-primary" ng-click="placeholderFunction"/>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>

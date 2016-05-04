@@ -2,11 +2,13 @@
 
   <h4 class="col-md-12">Sent Cards:</h4>
 
-  <button type="button" class="btn btn-default col-md-1 col-md-offset-2" onclick="$('#sentCardCarousel').carousel('prev')">
+  <p class="col-md-12" ng-show="!currentlySelectedSentCard.createdAt" style="text-align:center;">No Sent Cards</p>
+
+  <button type="button" class="btn btn-default col-md-1 col-md-offset-2" onclick="$('#sentCardCarousel').carousel('prev')" data-ng-click="lastSentClicked();" ng-show="currentlySelectedSentCard.createdAt">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
   </button>
 
-  <div id="sentCardCarousel" class="carousel slide col-md-6" data-ride="carousel">
+  <div id="sentCardCarousel" class="carousel slide col-md-6" data-ride="carousel" data-interval="0" ng-show="currentlySelectedSentCard.createdAt">
     <div class="carousel-inner" role="listbox">
 
       <div class="item active">
@@ -28,16 +30,17 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-default col-md-1" onclick="$('#sentCardCarousel').carousel('next')">
+  <button type="button" class="btn btn-default col-md-1" onclick="$('#sentCardCarousel').carousel('next')" data-ng-click="nextSentClicked();" ng-show="currentlySelectedSentCard.createdAt">
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
   </button>
 
-  <div class="col-md-3">
+  <div class="col-md-3" ng-show="currentlySelectedSentCard.createdAt">
     <br><br>
     <hr class="col-md-12">
-    <h5 class="col-md-12">Sender: Adam Smith</h4>
-    <h5 class="col-md-12">Time Sent: 3:04pm 04/10/16</h4>
-    <h5 class="col-md-12">View Count: 4 Times</h4>
+    <p class="col-md-4 statisticsElement">Time Sent:</p>
+    <p class="col-md-8 statisticsElement" ng-bind="currentlySelectedSentCard.createdAt | date:'MM/dd/yy h:mm a'">{{currentlySelectedSentCard.createdAt}}</p>
+    <p class="col-md-4 statisticsElement">View Count:</p>
+    <p class="col-md-8 statisticsElement">{{currentlySelectedSentCard.userCard.views}}</p>
     <hr class="col-md-12">
   </div>
 
@@ -51,11 +54,13 @@
 
   <h4 class="col-md-12">Received Cards:</h4>
 
-  <button type="button" class="btn btn-default col-md-1 col-md-offset-2" onclick="$('#receivedCardCarousel').carousel('prev')">
+  <p class="col-md-12" ng-show="!currentlySelectedReceivedCard.createdAt" style="text-align:center;">No Received Cards</p>
+
+  <button type="button" class="btn btn-default col-md-1 col-md-offset-2" onclick="$('#receivedCardCarousel').carousel('prev')" data-ng-click="lastReceivedClicked();" ng-show="currentlySelectedReceivedCard.createdAt">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
   </button>
 
-  <div id="receivedCardCarousel" class="carousel slide col-md-6" data-ride="carousel">
+  <div id="receivedCardCarousel" class="carousel slide col-md-6" data-ride="carousel" data-interval="0" ng-show="currentlySelectedReceivedCard.createdAt">
     <div class="carousel-inner" role="listbox">
 
       <div class="item active">
@@ -71,17 +76,20 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-default col-md-1" onclick="$('#receivedCardCarousel').carousel('next')">
+  <button type="button" class="btn btn-default col-md-1" onclick="$('#receivedCardCarousel').carousel('next')" data-ng-click="nextReceivedClicked();" ng-show="currentlySelectedReceivedCard.createdAt">
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
   </button>
 
-  <div class="col-md-3">
+  <div class="col-md-3" ng-show="currentlySelectedReceivedCard.createdAt">
     <br><br>
     <hr class="col-md-12">
-    <h5 class="col-md-12">Sender: Adam Smith</h4>
-    <h5 class="col-md-12">Time Sent: 3:04pm 04/10/16</h4>
-    <h5 class="col-md-12">View Count: 4 Times</h4>
+    <p class="col-md-4 statisticsElement">Sender:</p>
+    <p class="col-md-8 statisticsElement">{{extractEmailAddress(currentlySelectedReceivedCard.fromAddress);}}</p>
+    <p class="col-md-4 statisticsElement">Time Sent:</p>
+    <p class="col-md-8 statisticsElement" ng-bind="currentlySelectedReceivedCard.createdAt | date:'MM/dd/yy h:mm a'">{{currentlySelectedReceivedCard.createdAt}}</p>
+    <p class="col-md-4 statisticsElement">View Count:</p>
+    <p class="col-md-8 statisticsElement">{{currentlySelectedReceivedCard.userCard.views}}</p>
     <hr class="col-md-12">
   </div>
-  
+
 </div>

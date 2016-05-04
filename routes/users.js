@@ -32,6 +32,54 @@ router.get('/', function(req, res, next) {
 
 })
 
+.patch('/login', function(req, res, next) {
+    var userID = req.decoded.id;
+
+    users.update({
+      loggedIn: true, //getting time stamp
+    }, {
+      where: {
+        id: userID, //checking if the id requested
+      } //closing where-in
+    }).then(function (userData){
+      console.log(userData);
+      res.status(200).send({
+          success: true,
+          message: "User has been logged in."
+      });
+    }).catch(function (err) {
+      res.status(500).send({
+          success: false,
+          message: err
+      });
+    })
+
+  }) //closing patch
+
+.patch('/logout', function(req, res, next) {
+    var userID = req.decoded.id;
+
+    users.update({
+      loggedIn: false, //getting time stamp
+    }, {
+      where: {
+        id: userID, //checking if the id requested
+      } //closing where-in
+    }).then(function (userData){
+      console.log(userData);
+      res.status(200).send({
+          success: true,
+          message: "User has been logged out."
+      });
+    }).catch(function (err) {
+      res.status(500).send({
+          success: false,
+          message: err
+      });
+    })
+
+  }) //closing patch
+
 .get('/:userID', function(req, res, next) {
     var userID = req.params.userID;
 
@@ -249,6 +297,68 @@ router.get('/', function(req, res, next) {
 
   users.update({
       verifiedTF: false, //getting time stamp
+    }, {
+      where: {
+        id: userID, //checking if the id requested
+      } //closing where-in
+    }) //closing update
+
+  return res.status(200).send({ //400 indicates 'client error'
+    success: true,
+    message: 'User has been deactivated.'
+  });
+})
+
+//this section bans an account based on the userID passed
+.patch('/banAccount/:userID', function(req, res) {
+  console.log('ban account called.');
+  var userID = req.params.userID;
+  console.log('banning userID: ', userID);
+
+  var decoded = req.decoded; //getting the user object
+
+  //If the logged in user doesn't match the passed ID nor are they an admin, error
+  if (decoded.id != userID && !decoded.adminTF) {
+    console.log('User doesn\'t match and not an admin.');
+    return res.status(400).send({ //400 indicates 'client error'
+      success: false,
+      message: 'User ins\'t authorized to make the change.'
+    });
+  }
+
+  users.update({
+      bannedTF: true, //getting time stamp
+    }, {
+      where: {
+        id: userID, //checking if the id requested
+      } //closing where-in
+    }) //closing update
+
+  return res.status(200).send({ //400 indicates 'client error'
+    success: true,
+    message: 'User has been deactivated.'
+  });
+})
+
+//this section bans an account based on the userID passed
+.patch('/unbanAccount/:userID', function(req, res) {
+  console.log('unban account called.');
+  var userID = req.params.userID;
+  console.log('unbanning userID: ', userID);
+
+  var decoded = req.decoded; //getting the user object
+
+  //If the logged in user doesn't match the passed ID nor are they an admin, error
+  if (decoded.id != userID && !decoded.adminTF) {
+    console.log('User doesn\'t match and not an admin.');
+    return res.status(400).send({ //400 indicates 'client error'
+      success: false,
+      message: 'User ins\'t authorized to make the change.'
+    });
+  }
+
+  users.update({
+      bannedTF: false, //getting time stamp
     }, {
       where: {
         id: userID, //checking if the id requested

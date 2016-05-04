@@ -37,7 +37,10 @@ var Users = db.define('users', {
     type: Sequelize.BOOLEAN,
     field: 'verifiedTF'
   },
-
+  loggedIn: {
+    type: Sequelize.BOOLEAN,
+    field: 'loggedIn'
+  },
   deletedAt: {
     type: Sequelize.DATE,
     field: 'deletedAt'

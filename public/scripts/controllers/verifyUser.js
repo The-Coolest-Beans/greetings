@@ -15,7 +15,6 @@ angular
         // save the results of the call
         $scope.user = result.data;
         console.log('found user: ', $scope.user);
-        //TODO: Determine if the user can be verified or it they are already verified
         if(!$scope.user || !$scope.user.name) {
           console.log('User couldn\'t be verified.');
           $scope.displayMsg = 'There is no user associated with this verification link. Please try again.';

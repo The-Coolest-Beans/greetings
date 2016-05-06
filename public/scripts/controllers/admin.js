@@ -113,6 +113,4 @@ angular
 
     } // end function
 
-    //TODO Code to bring back users and cards
-
   ]); // end controller

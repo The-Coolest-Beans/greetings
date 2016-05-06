@@ -10,8 +10,14 @@ router.use(authCheck);
 var users = require('../database/models/users.js');//get user cards table from database
 //variable corresponding to the sentCards table
 var sentCards = require('../database/models/sentCards.js');
+var templates = require('../database/models/cardTemplates.js');
+var userCards = require('../database/models/userCards.js');
 //returns all users in the database, name, email, adminTF, bannedTF, verifiedTF,
 router.get('/allUsers', function(req, res, next){
+  if(!req.decoded.adminTF){
+    console.log("You are not authorized to perform this action.");
+    return;
+  }
   //var userId = req.body.id;
   users.findAll({
       attributes: { exclude: [ 'password'] }
@@ -26,21 +32,8 @@ router.get('/allUsers', function(req, res, next){
 3. get all sent cards (authenticated call) CHECK - tested
 4. get all sent cards for specific user based on userId (which is a GUID) (authenticated call) CHECK - tested
 5. update a specific user based on userId (which is a GUID) (authenticated call) CHECK - tested
-*/ 
+*/
 
-//returns a single user based on the id specified
-//TESTED by Sarah and works
-router.get('/:singleId', function(req, res, next){
-  var userId = req.params.singleId;
-  users.findAll({
-    where: {
-      id: userId
-    },//closing where
-    attributes: {exclude : ['password']}//closing attributes
-  }).then(function (userList){
-    res.send(userList);
-  });
-})//closing get function
 
 /**** ADMIN UPDATE USER FUNCTION ****
 admin can change a user's info.
@@ -49,6 +42,13 @@ id of the user to change must be sent, along with all other user information exc
 TESTED: working as tested by Sarah
 *****************************/
 router.patch('/updateUser' , function(req, res, next){
+  if(!req.decoded.adminTF){
+    console.log("You are not authorized to perform this action.");
+    return;
+  }
+  else{
+    console.log("Welcome admin. You are authorized.");
+  }
   var userId = req.body.id;
   var date = new Date();
   users.update({ // filling out all the infor
@@ -76,19 +76,58 @@ router.patch('/updateUser' , function(req, res, next){
 TESTED : is working as looked at by Sarah
 */
 router.get('/getAllSent' , function(req, res, next){
+  if(!req.decoded.adminTF){
+    console.log("You are not authorized to perform this action.");
+    return;
+  }
+  else{
+    console.log("Welcome admin. You are authorized.");
+  }
   sentCards.findAll({
     /*return all of the sent cards, nothing here because no info to exclude.*/
+    attributes: {}
   }).then(function(cardList){ // close of find all on this line
     res.send(cardList);
   })//closing response function
 } );//closing get
 
+/* This call returns a single card as requested by an admin.
+
+*/
+router.get('/getSingleSent/:cardId', function(req, res, next){
+  if(!req.decoded.adminTF){
+    console.log("You are not authorized to perform this action.");
+    return;
+  }
+  else{
+    console.log("Welcome admin. You are authorized.");
+  }
+  var id = req.params.cardId;
+  userCards.findAll({
+    where: {
+        Id: id,//all that match my ID
+    },
+    include: [{
+        model: templates,
+        attributes: {  }
+    }]
+  }).then(function (cardData) {
+    res.send(cardData);
+  });
+} ); //closing get
 /*this call takes in the user guid as a param and returns all cards sent by that user
 NOTE: this is very similar to 'mycards', however this calls works from the admin's perspective,
 whereas my cards works from the perspective of the loggin in user.
 TESTED: works as tested by Sarah
 */
 router.get('/getSentByUser/:user', function(req, res, next){
+  if(!req.decoded.adminTF){
+    console.log("You are not authorized to perform this action.");
+    return;
+  }
+  else{
+    console.log("Welcome admin. You are authorized.");
+  }
   var userId = req.params.user;
   sentCards.findAll({
     where:{
@@ -98,6 +137,30 @@ router.get('/getSentByUser/:user', function(req, res, next){
     res.send(cardList);
   })//closing response function
 });//closing get
+
+
+
+
+//returns a single user based on the id specified
+//TESTED by Sarah and works
+router.get('/:singleId', function(req, res, next){
+  if(!req.decoded.adminTF){
+    console.log("You are not authorized to perform this action.");
+    return;
+  }
+  else{
+    console.log("Welcome admin. You are authorized.");
+  }
+  var userId = req.params.singleId;
+  users.findAll({
+    where: {
+      id: userId
+    },//closing where
+    attributes: {exclude : ['password']}//closing attributes
+  }).then(function (userList){
+    res.send(userList);
+  });
+})//closing get function
 /*
 Project.update(
   {

@@ -96,8 +96,8 @@ angular
         });
       }
 
-      $scope.showUsersTF = false;
-      $scope.showCardsTF = true;
+      $scope.showUsersTF = true;
+      $scope.showCardsTF = false;
 
       $scope.showUsers = function() {
         console.log('showUsers');

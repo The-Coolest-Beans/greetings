@@ -16,7 +16,7 @@
           <span class="glyphicon glyphicon-trash"></span>
         </button>
         <h1 class="col-md-12" align="center" style="color:{{firstSentCard.userCard.headerTextColor}};font-family:{{firstSentCard.userCard.fontFamily}};font-size:large;" id="cardContent">{{firstSentCard.userCard.headerText}}</h1>
-        <img src="{{firstSentCard.userCard.cardTemplate.imagePath}}">
+        <a href="/#/viewCard/{{firstSentCard.cardId}}"><img src="{{firstSentCard.userCard.cardTemplate.imagePath}}"></a>
       </div>
 
       <div class="item" ng-repeat="card in sentCards">
@@ -24,7 +24,7 @@
           <span class="glyphicon glyphicon-trash"></span>
         </button>
         <h1 class="col-md-12" align="center" style="color:{{card.userCard.headerTextColor}};font-family:{{card.userCard.fontFamily}};font-size:large;" id="cardContent">{{card.userCard.headerText}}</h1>
-        <img src="{{card.userCard.cardTemplate.imagePath}}">
+        <a href="/#/viewCard/{{card.cardId}}"><img src="{{card.userCard.cardTemplate.imagePath}}"></a>
       </div>
 
     </div>
@@ -37,11 +37,14 @@
   <div class="col-md-3" ng-show="currentlySelectedSentCard.createdAt">
     <br><br>
     <hr class="col-md-12">
+    <p class="col-md-4 statisticsElement">Sent To:</p>
+    <p class="col-md-8 statisticsElement">{{currentlySelectedSentCard.toAddress}}</p>
     <p class="col-md-4 statisticsElement">Time Sent:</p>
     <p class="col-md-8 statisticsElement" ng-bind="currentlySelectedSentCard.createdAt | date:'MM/dd/yy h:mm a'">{{currentlySelectedSentCard.createdAt}}</p>
     <p class="col-md-4 statisticsElement">View Count:</p>
     <p class="col-md-8 statisticsElement">{{currentlySelectedSentCard.userCard.views}}</p>
     <hr class="col-md-12">
+    <a href="/#/sendCard/{{currentlySelectedSentCard.cardId}}" class="btn btn-primary col-md-8 col-md-offset-2">Re-send This Card</a>
   </div>
 
 </div>
@@ -65,12 +68,12 @@
 
       <div class="item active">
         <h1 class="col-md-12" align="center" style="color:{{firstReceivedCard.userCard.headerTextColor}};font-family:{{firstReceivedCard.userCard.fontFamily}};font-size:large;" id="cardContent">{{firstReceivedCard.userCard.headerText}}</h1>
-        <img src="{{firstReceivedCard.userCard.cardTemplate.imagePath}}">
+        <a href="/#/viewCard/{{firstReceivedCard.cardId}}"><img src="{{firstReceivedCard.userCard.cardTemplate.imagePath}}"></a>
       </div>
 
       <div class="item" ng-repeat="card in receivedCards">
         <h1 class="col-md-12" align="center" style="color:{{card.userCard.headerTextColor}};font-family:{{card.userCard.fontFamily}};font-size:large;" id="cardContent">{{card.userCard.headerText}}</h1>
-        <img src="{{card.userCard.cardTemplate.imagePath}}">
+        <a href="/#/viewCard/{{card.cardId}}"><img src="{{card.userCard.cardTemplate.imagePath}}"></a>
       </div>
 
     </div>

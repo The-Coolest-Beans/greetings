@@ -6,7 +6,6 @@ var router = express.Router();//
 var authCheck = require('./authCheck');
 router.use(authCheck);
 
-//TODO: check the this connection works
 //establishing database connection
 
 var mysql = require('mysql');

@@ -1,0 +1,40 @@
+FAQ’s:
+Why can’t I create a card?
+
+In order to be able to create and send cards, you must become a registered user. Simply create an account
+here at http://greetings.cs.nmsu.edu:3000/#/signup
+
+What should I do if I can’t get my email verified?
+
+If you have tried multiple times to verify your email without success, simply log on to
+the email you signed up with, and send an email to the Cool Beans Cards team regarding your verification.
+Simply say “Hello, I am [your name] and I would like to use Cool Beans Cards.” When one of our team members sees your proof email they will verify you manually. Send emails to greetings@cs.nmsu.edu.
+Does my friend have to have an account to see the card I made for them?
+No. See below:
+
+When I send a card to a friend, what happens?
+
+When you send a card to someone, they will receive an email with your email address listed as the sender.
+The email will contain the email body that you created in our card editor, and a link to the card you made.
+They will be able to see the card you created when they click on a link, regardless of whether or not they have a registered account.
+If I send a friend a card, then change my mind and delete it, can they still see it?
+No. After you’ve deleted a card neither you nor your friend can access it. However, the Cool Beans Cards
+team will still have a record of the card contents.
+
+What do I do if I have been banned?
+
+If you have been banned or are having trouble logging in, please send an email to greetings@cs.nmsu.edu with any
+inquiries. Our team will get back to negotiate lifting the ban or to help you re-access your account.
+What do I do if I cannot log in and don’t know why?
+See “What do I do if I have been banned.”
+
+What happens if I forgot my password?
+
+If you forgot your password you can go to the login page at http://greetings.cs.nmsu.edu:3000/#/login and
+ click “forgot password.” From there we will generate a new password and send it to you so that you may log
+ in temporarily using the random password. Also see “How do I change my password?”
+
+How do I change my password?
+
+To change your password, go to the account settings page by clicking your name in the top right corner
+of the page once you have logged in, and you can change it there.

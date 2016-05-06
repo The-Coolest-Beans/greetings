@@ -15,7 +15,7 @@ function ($q, $location, $injector, $window, localStorageService) {
 
     var _request = function (config) {
         config.headers = config.headers || {};
-        //TODO: You should pull the token from localstorage, where you put it when they logged in.
+        //Pull the token from localstorage, where you put it when they logged in.
         var authData = localStorageService.get('authorizationData');
         if (authData) {
             config.headers['x-access-token'] = authData.token;

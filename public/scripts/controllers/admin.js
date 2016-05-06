@@ -100,8 +100,21 @@ angular
         $state.go('app.home');
       }
 
-    } // end function
+      $scope.showUsersTF = true;
+      $scope.showCardsTF = false;
 
-    //TODO Code to bring back users and cards
+      $scope.showUsers = function() {
+        console.log('showUsers');
+        $scope.showUsersTF = true;
+        $scope.showCardsTF = false;
+      };
+
+      $scope.showCards = function() {
+        console.log('showCards');
+        $scope.showUsersTF = false;
+        $scope.showCardsTF = true;
+      };
+
+    } // end function
 
   ]); // end controller

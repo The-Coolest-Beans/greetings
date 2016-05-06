@@ -1,0 +1,5 @@
+Data Use Policy:
+Any information provided to the site will be recorded and stored by the Cool Beans Cards
+application and will belong to Cool Beans Cards. This includes account information other
+than your password, and all sent and received cards. Please note that even if a card is deleted,
+or if you choose to deactivate your account, Cool Beans Cards will still retain a copy of the information given.  

@@ -32,7 +32,7 @@ router.get('/allUsers', function(req, res, next){
 //TESTED by Sarah and works
 router.get('/:singleId', function(req, res, next){
   var userId = req.params.singleId;
-  users.findAll({
+  users.find({
     where: {
       id: userId
     },//closing where
@@ -55,9 +55,6 @@ router.patch('/updateUser' , function(req, res, next){
     name: req.body.name,
     email: req.body.email,
     updatedAt: date.getTime(), //fill in with current date
-    adminTF: req.body.adminTF,
-    bannedTF: req.body.bannedTF,
-    verifiedTF: req.body.verifiedTF
   },
   //only where the id matches your request id
   {where: {

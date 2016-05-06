@@ -19,7 +19,7 @@ angular.module('app')
 
         } // end if
 
-        if ($scope.newUserInfo.name.length <= 4) {
+        if ($scope.newUserInfo.name.length <= 0) {
 
           noty({
             timeout: 3000,

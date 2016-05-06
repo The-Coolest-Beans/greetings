@@ -92,7 +92,7 @@ angular
 
         }).success(function(result) {
 
-          //Let the user know that the card was created.
+          //notify the user with some visual feedback
           noty({
             timeout: 3000,
             type: 'confirm', //blue. Also alert, information, confirm, error, warning

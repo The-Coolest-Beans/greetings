@@ -60,7 +60,7 @@ angular
               console.log('Failed to get card. Error: ', result);
             }
             else {
-              $scope.card = result.data;
+              $scope.card = result.data[0];
               console.log('Card data: ', $scope.card);
               $scope.customStyle = {"color":$scope.card.headerTextColor, "font-family":$scope.card.fontFamily};
 

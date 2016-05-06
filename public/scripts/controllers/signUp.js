@@ -108,6 +108,7 @@ angular.module('app')
             text: response.message,//'Verification Email sent. Please check your email (' + $scope.newUserInfo.email + ')',
             closeWith: ['button', 'click'],
           }); // end noty block
+          $state.go('app.login');
         }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.

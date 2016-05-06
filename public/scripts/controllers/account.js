@@ -192,6 +192,7 @@ angular
               text: result.message,
               closeWith: ['button', 'click'],
             }); // end noty block
+            $scope.logout();
           } else {
             //Let the user know that the card was created.
             noty({

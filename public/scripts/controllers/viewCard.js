@@ -84,15 +84,16 @@ angular
             }); // end noty block
           }); // end api call block
         }
-
-        console.log('Get call to cards errored.', e);
-        noty({
-          timeout: 3000,
-          type: 'error', //blue. Also alert, information, confirm, error, warning
-          layout: 'topCenter',
-          text: 'This card cannot be accessed. It is possible that it has been deleted.',
-          closeWith: ['button', 'click'],
-        }); // end noty block
+        else {
+          console.log('Get call to cards errored.', e);
+          noty({
+            timeout: 3000,
+            type: 'error', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'This card cannot be accessed. It is possible that it has been deleted.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+        }
       }); // end api call block
 
     } // end function

@@ -96,6 +96,21 @@ angular
         });
       }
 
+      $scope.showUsersTF = false;
+      $scope.showCardsTF = true;
+
+      $scope.showUsers = function() {
+        console.log('showUsers');
+        $scope.showUsersTF = true;
+        $scope.showCardsTF = false;
+      };
+
+      $scope.showCards = function() {
+        console.log('showCards');
+        $scope.showUsersTF = false;
+        $scope.showCardsTF = true;
+      };
+
     } // end function
 
     //TODO Code to bring back users and cards

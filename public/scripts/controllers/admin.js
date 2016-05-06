@@ -29,7 +29,7 @@ angular
         authService.logOut();
       };
 
-      $http.get('/api/users').then(function(result){
+      $http.get('/api/admin/allUsers').then(function(result){
         console.log('user call result:', result);
         if(!result.data || result.status != 200)
         {
@@ -46,9 +46,16 @@ angular
       $scope.sortReverse = true;  // Reverse order table column
 
       // Ban a user given their user ID
-      $scope.banUser = function(userId){
+      $scope.banUser = function(userId, userName){
         $http.patch('/api/users/banAccount/' + userId).then(function(result) {
           console.log('User has been banned.', result);
+          noty({
+            timeout: 3000,
+            type: 'confirm', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'User ' + userName + ' has been banned.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
         }, function(e) {
           // error occurred - print it
           console.log('Error banning user.', e);
@@ -56,12 +63,36 @@ angular
       }
 
       // Unban a user given their user ID
-      $scope.unbanUser = function(userId){
+      $scope.unbanUser = function(userId, userName){
         $http.patch('/api/users/unbanAccount/' + userId).then(function(result) {
           console.log('User has been unbanned.', result);
+          noty({
+            timeout: 3000,
+            type: 'confirm', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'User ' + userName + ' has been unbanned.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
         }, function(e) {
           // error occurred - print it
           console.log('Error unbanning user.', e);
+        });
+      }
+
+      // Verfiy a user given their user ID
+      $scope.verifyUser = function(userId, userName){
+        $http.get('/api/verifyUser/' + userId).then(function(result) {
+          console.log('User has been verified.', result);
+          noty({
+            timeout: 3000,
+            type: 'confirm', //blue. Also alert, information, confirm, error, warning
+            layout: 'topCenter',
+            text: 'User ' + userName + ' has been verified.',
+            closeWith: ['button', 'click'],
+          }); // end noty block
+        }, function(e) {
+          // error occurred - print it
+          console.log('Error verifying user.', e);
         });
       }
 

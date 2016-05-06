@@ -45,10 +45,10 @@
 								<span ng-show='user.bannedTF' style="color: red">Banned</span>
 							</td>
 							<td>
-								<input ng-show='!user.bannedTF' type="button" value="Ban" class="btn btn-danger col-md-4" ng-click="banUser(user.id, user.name); user.bannedTF= true"/>
-								<input ng-show='user.bannedTF' type="button" value="Unban" class="btn btn-danger col-md-4" ng-click="unbanUser(user.id, user.name); user.bannedTF= false"/>
-								<input type="button" value="Profile" class="btn btn-primary col-md-4 col-md-offset-1" ng-click="placeholderFunction()"/>
-								<input ng-show='!user.verifiedTF' type="button" value="Verify" class="btn btn-success col-md-4 col-md-offset-1" ng-click="verifyUser(user.id, user.name); user.verifiedTF=true"/>
+								<input ng-show='!user.bannedTF' type="button" value="Ban" class="btn btn-danger col-md-3" ng-click="banUser(user.id, user.name); user.bannedTF= true"/>
+								<input ng-show='user.bannedTF' type="button" value="Unban" class="btn btn-danger col-md-3" ng-click="unbanUser(user.id, user.name); user.bannedTF= false"/>
+								<input type="button" value="Profile" class="btn btn-primary col-md-3 col-md-offset-1" ng-click="placeholderFunction()"/>
+								<input ng-show='!user.verifiedTF' type="button" value="Verify" class="btn btn-success col-md-3 col-md-offset-1" ng-click="verifyUser(user.id, user.name); user.verifiedTF=true"/>
 							</td>
 						</tr4
 					</table>

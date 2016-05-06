@@ -83,7 +83,7 @@ angular
 
           if(result.success)
           {
-            //Let the user know that the card was created.
+            //notify the user with some visual feedback
             noty({
               timeout: 3000,
               type: 'confirm', //blue. Also alert, information, confirm, error, warning
@@ -95,7 +95,7 @@ angular
             $scope.logout();
           }
           else {
-            //Let the user know that the card was created.
+            //notify the user with some visual feedback
             noty({
               timeout: 3000,
               type: 'error', //blue. Also alert, information, confirm, error, warning
@@ -121,7 +121,7 @@ angular
 
           if(result.success)
           {
-            //Let the user know that the card was created.
+            //notify the user with some visual feedback
             noty({
               timeout: 3000,
               type: 'confirm', //blue. Also alert, information, confirm, error, warning
@@ -133,7 +133,7 @@ angular
             $scope.logout();
           }
           else {
-            //Let the user know that the card was created.
+            //notify the user with some visual feedback
             noty({
               timeout: 3000,
               type: 'error', //blue. Also alert, information, confirm, error, warning
@@ -184,7 +184,7 @@ angular
           console.log('resetPassword result: ', result);
 
           if(result.success) {
-            //Let the user know that the card was created.
+            //notify the user with some visual feedback
             noty({
               timeout: 3000,
               type: 'confirm', //blue. Also alert, information, confirm, error, warning
@@ -194,7 +194,7 @@ angular
             }); // end noty block
             $scope.logout();
           } else {
-            //Let the user know that the card was created.
+            //notify the user with some visual feedback
             noty({
               timeout: 3000,
               type: 'error', //blue. Also alert, information, confirm, error, warning

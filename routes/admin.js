@@ -155,7 +155,7 @@ router.get('/:singleId', function(req, res, next){
     console.log("Welcome admin. You are authorized.");
   }
   var userId = req.params.singleId;
-  users.findAll({
+  users.find({
     where: {
       id: userId
     },//closing where

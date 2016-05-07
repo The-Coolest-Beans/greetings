@@ -95,11 +95,6 @@ angular
         });
       }
 
-      // Verfiy a user given their user ID
-      $scope.viewUserProfile = function(userId){
-        $state.go('app.home');
-      }
-
       $scope.showUsersTF = true;
       $scope.showCardsTF = false;
 

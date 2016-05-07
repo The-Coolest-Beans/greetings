@@ -13,7 +13,7 @@ angular
 
       $http.get('/api/verifyUser/fetchUser/' + $scope.userID).then(function(result){
         // save the results of the call
-        $scope.user = result;
+        $scope.user = result.data;
         console.log('found user: ', $scope.user);
         if(!$scope.user || !$scope.user.name) {
           console.log('User couldn\'t be verified.');

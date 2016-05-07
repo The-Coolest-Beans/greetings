@@ -80,16 +80,14 @@ router.get('/getAllSent' , function(req, res, next){
     console.log("Welcome admin. You are authorized.");
   }
   sentCards.findAll({
-  
+
     include: [{
         model: userCards,
         include: [{
           model: templates,
           attributes: { exclude: ['deletedAt'] }
         }],
-        where: {
-          deletedAt: null //all that haven't been deleted
-        }
+        
     }]
   }).then(function (cardData){
     res.send(cardData);

@@ -81,10 +81,8 @@
           <div class="col-md-12" style="height: 500px !important; overflow: scroll;">
             <table class="table">
               <tr>
-                <th ng-click="sortType = 'to'; sortReverse = !sortReverse">
+                <th>
                   To:
-                  <span ng-show="sortType == 'to' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'to' && sortReverse" class="fa fa-caret-up"></span>
                 </th>
                 <th>
                   From:
@@ -96,7 +94,7 @@
                   Sent At:
                 </th>
               </tr>
-              <tr ng-repeat="card in allCards">
+              <tr ng-repeat="card in allCards | filter: searchWord" ng-click="loadViewCard(card.cardId);">
                 <td>
                   <!-- To Address -->
                   {{card.toAddress}}

@@ -2,8 +2,8 @@
 
 angular
   .module('app')
-  .controller('adminCtrl', ['$stateParams', '$scope', '$rootScope', '$http', 'authService', '$timeout', '$state',
-    function AppCtrl($stateParams, $scope, $rootScope, $http, authService, $timeout, $state) {
+  .controller('adminCtrl', ['$stateParams', '$scope', '$rootScope', '$http', 'authService', '$timeout', '$state', '$location',
+    function AppCtrl($stateParams, $scope, $rootScope, $http, authService, $timeout, $state, $location) {
 
       //This is set to handle new logins and already loaded users.
       $scope.user = authService.getUser();
@@ -138,10 +138,9 @@ angular
 
       } // end method
 
-      $scope.test = function(log){
-
-        console.log("Logging: " + log);
-      }
+      $scope.loadViewCard = function(cardId) {
+        $location.path('/viewCard/' + cardId);
+      }; // end method
 
     } // end function
 

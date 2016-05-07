@@ -80,11 +80,20 @@ router.get('/getAllSent' , function(req, res, next){
     console.log("Welcome admin. You are authorized.");
   }
   sentCards.findAll({
-    /*return all of the sent cards, nothing here because no info to exclude.*/
-    attributes: {}
-  }).then(function(cardList){ // close of find all on this line
-    res.send(cardList);
-  })//closing response function
+  
+    include: [{
+        model: userCards,
+        include: [{
+          model: templates,
+          attributes: { exclude: ['deletedAt'] }
+        }],
+        where: {
+          deletedAt: null //all that haven't been deleted
+        }
+    }]
+  }).then(function (cardData){
+    res.send(cardData);
+  });
 } );//closing get
 
 /* This call returns a single card as requested by an admin.

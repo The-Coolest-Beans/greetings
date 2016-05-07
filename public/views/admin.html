@@ -81,8 +81,10 @@
           <div class="col-md-12" style="height: 500px !important; overflow: scroll;">
             <table class="table">
               <tr>
-                <th>
+                <th ng-click="sortType = 'to'; sortReverse = !sortReverse">
                   To:
+                  <span ng-show="sortType == 'to' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'to' && sortReverse" class="fa fa-caret-up"></span>
                 </th>
                 <th>
                   From:

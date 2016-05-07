@@ -138,6 +138,11 @@ angular
 
       } // end method
 
+      $scope.test = function(log){
+
+        console.log("Logging: " + log);
+      }
+
     } // end function
 
   ]); // end controller

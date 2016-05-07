@@ -31,12 +31,8 @@ angular
         $scope.newName = $scope.userData.name;
         $scope.newEmail = $scope.userData.email;
         $scope.newEmailRetype = $scope.newEmail;
+        console.log("UserData: " + $scope.userData);
       });
-
-      $scope.logout = function() {
-        console.log('Logging out.');
-        authService.logOut();
-      };
 
       $scope.emailChangedTF = false;
 
@@ -96,7 +92,6 @@ angular
               closeWith: ['button', 'click'],
             }); // end noty block
 
-            $scope.logout();
           }
           else {
             //notify the user with some visual feedback
@@ -134,7 +129,6 @@ angular
               closeWith: ['button', 'click'],
             }); // end noty block
 
-            $scope.logout();
           }
           else {
             //notify the user with some visual feedback
@@ -196,7 +190,6 @@ angular
               text: result.message,
               closeWith: ['button', 'click'],
             }); // end noty block
-            $scope.logout();
           } else {
             //notify the user with some visual feedback
             noty({

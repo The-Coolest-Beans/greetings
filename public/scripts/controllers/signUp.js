@@ -105,7 +105,7 @@ angular.module('app')
             timeout: 3000,
             type: 'confirm', //blue. Also alert, information, confirm, error, warning
             layout: 'topCenter',
-            text: response.message,//'Verification Email sent. Please check your email (' + $scope.newUserInfo.email + ')',
+            text: response.data.message,//'Verification Email sent. Please check your email (' + $scope.newUserInfo.email + ')',
             closeWith: ['button', 'click'],
           }); // end noty block
           $state.go('app.login');

@@ -115,6 +115,29 @@ angular
         $scope.showCardsTF = true;
       };
 
+      $http.get('/api/admin/getAllSent').then(function(result) {
+
+        if(!result.data || result.status != 200)
+          console.log('Failed to all sent cards. Error: ', result);
+
+        else
+          $scope.allCards = result.data;
+
+      }, function(e) {
+
+        console.log('Get call to getAllSent errored.', e);
+
+      }); // end api call block
+
+      $scope.extractEmailAddress = function(fromAddress){
+
+        if(fromAddress == null) return "";
+
+        var emailAddress = fromAddress.substring(fromAddress.lastIndexOf("<")+1, fromAddress.lastIndexOf(">"));
+        return emailAddress;
+
+      } // end method
+
     } // end function
 
   ]); // end controller

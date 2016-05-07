@@ -2,6 +2,23 @@ var express = require('express');//using express module
 var router = express.Router();//
 var users = require('../database/models/users.js'); // get users table from database
 
+
+router.get('/fetchUser/:userID', function(req, res, next) {
+    var userID = req.params.userID;
+
+    users.find({
+      where: {
+        id: userID,
+      },
+      attributes: {
+        exclude: ['password']
+      }
+    }).then(function(userData) {
+      res.send(userData);
+    });
+
+  }) //closing get
+
 //this section updates a user's verification status based on their id
 router.get('/:userID', function(req, res, next){
   console.log('verifyUser api call is starting.');
@@ -23,18 +40,5 @@ router.get('/:userID', function(req, res, next){
   });
 
 });//closing delete
-
-router.get('/fetchUser/:userID', function(req, res, next) {
-    var userID = req.params.userID;
-
-    users.find({
-      where: {
-        id: userID,
-      }
-    }).then(function(userData) {
-      res.send(userData);
-    });
-
-  }) //closing get
 
 module.exports = router;

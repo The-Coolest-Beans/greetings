@@ -81,27 +81,35 @@
           <div class="col-md-12" style="height: 500px !important; overflow: scroll;">
             <table class="table">
               <tr>
-                <th>
+                <th ng-click="cardSortType = 'toAddress'; cardSortReverse = !cardSortReverse">
                   To:
+                  <span ng-show="cardSortType == 'toAddress' && !cardSortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="cardSortType == 'toAddress' && cardSortReverse" class="fa fa-caret-up"></span>
                 </th>
-                <th>
+                <th ng-click="cardSortType = 'fromAddress'; cardSortReverse = !cardSortReverse">
                   From:
+                  <span ng-show="cardSortType == 'fromAddress' && !cardSortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="cardSortType == 'fromAddress' && cardSortReverse" class="fa fa-caret-up"></span>
                 </th>
-                <th>
+                <th ng-click="cardSortType = 'emailBodyPlain'; cardSortReverse = !cardSortReverse">
                   Message:
+                  <span ng-show="cardSortType == 'emailBodyPlain' && !cardSortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="cardSortType == 'emailBodyPlain' && cardSortReverse" class="fa fa-caret-up"></span>
                 </th>
-                <th>
+                <th ng-click="cardSortType = 'createdAt'; cardSortReverse = !cardSortReverse">
                   Sent At:
+                  <span ng-show="cardSortType == 'createdAt' && !cardSortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="cardSortType == 'createdAt' && cardSortReverse" class="fa fa-caret-up"></span>
                 </th>
               </tr>
-              <tr ng-repeat="card in allCards | filter: searchWord" ng-click="loadViewCard(card.cardId);">
+              <tr ng-repeat="card in allCards | filter: searchWord | orderBy:cardSortType:cardSortReverse" ng-click="loadViewCard(card.cardId);">
                 <td>
                   <!-- To Address -->
                   {{card.toAddress}}
                 </td>
                 <td>
                   <!-- From Address -->
-                  {{extractEmailAddress(card.fromAddress);}}
+                  {{card.fromAddress}}
                 </td>
                 <td>
                   <!-- Message -->

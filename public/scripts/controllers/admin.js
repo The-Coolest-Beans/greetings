@@ -115,6 +115,9 @@ angular
         $scope.showCardsTF = true;
       };
 
+      $scope.cardsSortType = "toAddress"; // User field in table to order by
+      $scope.cardsSortReverse = true;  // Reverse order table column
+
       $http.get('/api/admin/getAllSent').then(function(result) {
 
         if(!result.data || result.status != 200)

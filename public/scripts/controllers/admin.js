@@ -29,8 +29,7 @@ angular
         authService.logOut();
       };
 
-      $http.get('/api/admin/allUsers').then(function(result){
-        console.log('user call result:', result);
+      $http.get('/api/admin/allUsers').then(function(result) {
         if(!result.data || result.status != 200)
         {
           console.log('Failed to get users. Error: ', result);
@@ -94,6 +93,11 @@ angular
           // error occurred - print it
           console.log('Error verifying user.', e);
         });
+      }
+
+      // Verfiy a user given their user ID
+      $scope.viewUserProfile = function(userId){
+        $state.go('app.home');
       }
 
       $scope.showUsersTF = true;

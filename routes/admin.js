@@ -34,7 +34,6 @@ router.get('/allUsers', function(req, res, next){
 5. update a specific user based on userId (which is a GUID) (authenticated call) CHECK - tested
 */
 
-
 /**** ADMIN UPDATE USER FUNCTION ****
 admin can change a user's info.
 id of the user to change must be sent, along with all other user information except for password.
@@ -55,9 +54,6 @@ router.patch('/updateUser' , function(req, res, next){
     name: req.body.name,
     email: req.body.email,
     updatedAt: date.getTime(), //fill in with current date
-    adminTF: req.body.adminTF,
-    bannedTF: req.body.bannedTF,
-    verifiedTF: req.body.verifiedTF
   },
   //only where the id matches your request id
   {where: {

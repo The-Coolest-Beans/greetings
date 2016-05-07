@@ -11,7 +11,7 @@ angular
 
       console.log('passed userID: ', $scope.userID);
 
-      $http.get('/api/users/' + $scope.userID).then(function(result){
+      $http.get('/api/verifyUser/fetchUser' + $scope.userID).then(function(result){
         // save the results of the call
         $scope.user = result.data;
         console.log('found user: ', $scope.user);

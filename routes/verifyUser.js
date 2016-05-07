@@ -24,4 +24,17 @@ router.get('/:userID', function(req, res, next){
 
 });//closing delete
 
+router.get('/fetchUser/:userID', function(req, res, next) {
+    var userID = req.params.userID;
+
+    users.find({
+      where: {
+        id: userID,
+      }
+    }).then(function(userData) {
+      res.send(userData);
+    });
+
+  }) //closing get
+
 module.exports = router;

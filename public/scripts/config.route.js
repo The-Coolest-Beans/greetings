@@ -85,6 +85,11 @@ angular
           templateUrl: 'views/admin.html',
           controller: 'adminCtrl',
         })
+        .state('app.adminProfile', {
+          url: '/admin/userProfile/:userID',
+          templateUrl: 'views/adminProfile.html',
+          controller: 'adminProfileCtrl',
+        })
         .state('app.viewCard', {
           url: '/viewCard/:cardID',
           templateUrl: 'views/viewCard.html',

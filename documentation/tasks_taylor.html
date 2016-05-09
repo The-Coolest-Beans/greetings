@@ -15,33 +15,58 @@
 
 
     ========== COMPLETED ==========
-    1. Fill out what you've done
-    2. To keep track of everything
-
-
-    (3/25/16)
-    - Created greetingCards database.
-    - Created users, userCards, cardTemplates, and sentCards tables.
-    - Added sequelize ORM module to project.
-
-    - Added database connection and data model code (found in database folder)
-        -- Hooked up database to server (database/db.js)
-        -- Defined users table so sequelize can map the table data to JSON objects (database/models/users.js)
-        -- Defined cardTemplate table (database/models/cardTemplates.js)
-        -- Defined userCards table (database/models/userCards.js)
-        -- Defined sentCards table (database/models/sentCards.js)
-
-    - Updated users API to serve data from database instead of hard-coded data.
-    - Updated themes API to serve data from database instead of hard-coded data.
-    
-    (3/30/16)
-    - Renamed a few columns of some of the tables. (For example renamed the userId column 
+    1. Created greetingCards database.
+    2. Created users, userCards, cardTemplates, and sentCards tables.
+    3. Added sequelize ORM module to project.
+    4. Added database connection and data model code (found in database folder)
+    5. Hooked up database to server (database/db.js)
+    6. Defined users table so sequelize can map the table data to JSON objects (database/models/users.js)
+    7. Defined cardTemplate table (database/models/cardTemplates.js)
+    8. Defined userCards table (database/models/userCards.js)
+    9. Defined sentCards table (database/models/sentCards.js)
+    10. Updated users API to serve data from database instead of hard-coded data.
+    11. Updated themes API to serve data from database instead of hard-coded data.
+    12. Renamed a few columns of some of the tables. (For example renamed the userId column 
     in the users table to just id).
-    - Created themes and templateThemes relations so card templates can have multiple themes, and 
+    13. Created themes and templateThemes relations so card templates can have multiple themes, and 
     can be filtered by theme category.
-    - Renamed the former themes API to templates API since it's serving card template data, not theme data.
-    - Added placeolder images to support the dummy template data we have stored in the database.
-    - Updated card template pages to display thumbnails of all card templates, as well as their names and description.
-    
-
+    14. Renamed the former themes API to templates API since it's serving card template data, not theme data.
+    15. Added placeolder images to support the dummy template data we have stored in the database.
+    16. Updated card template pages to display thumbnails of all card templates, as well as their names and description.
+    17. Added ORM association between card templates and themes.
+    18. Added API endpoint to get card templates by their theme IDs.
+    19. Added card template category filtering.
+    20. Added API endpoint to get templates by their ID.
+    21. Added more template images.
+    22. Gave templates their own directory.
+    23. Organized font colors and font families in the dropdown.
+    24. Added Account Settings page to frontend code
+    25. Added font field to userCard data.
+    26. Added user card data to account settings controller.
+    27. Added fontFamily data to card creation API.
+    28. Added getToken method to authService.
+    29. Added card creation functionality to frontend.
+    30. Added popularity to card templates.
+    31. Added API endpoint to get top 6 templates based on popularity.
+    32. Added card popularity functionality.
+    33. Updated homepage to use new template popularity API endpoint.
+    34. Fixed account settings controller bugs.
+    35. Added sent cards API endpoint.
+    36. Added received cards API endpoint.
+    37. Updated delete card API
+    38. Updated sent and received cards API to handle deleted cards.
+    39. Added view count to cards.
+    40. Added views field to userCards model.
+    41. Added login field to user model.
+    42. Added login and logout user APIs.
+    43. Added ban and unban user APIs.
+    44. Added administrator page frontend layout.
+    45. Updated administrator page controller with necessary functionality.
+    46. Added logic to track user login status for administrator page.
+    47. Added administrator user verification and notifications for button clicks.
+    48. Added user verification button to admin page.
+    49. Aligned buttons for administrator page after verification button was added.
+    50. Added administrator profile viewing functionality.
+    51. Fixed user verification.
+    52. Removed logout if administrator updates another user's settings.
 */
